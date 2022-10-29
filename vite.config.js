@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import WindiCSS from 'vite-plugin-windicss'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
@@ -30,12 +31,14 @@ const https = () => {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template: { transformAssetUrls },
+    }),
     vueJsx(),
     WindiCSS(),
     stylelint(),
     createSvgIconsPlugin({
-    // Specify the icon folder to be cached
+      // Specify the icon folder to be cached
       iconDirs: [path.resolve(process.cwd(), 'src/icons')],
       // Specify symbolId format
       symbolId: 'icon-[name]',
@@ -43,6 +46,9 @@ export default defineConfig({
     vueI18n({
       compositionOnly: false,
       include: path.resolve(__dirname, 'src/locales/**'),
+    }),
+    quasar({
+      sassVariables: 'src/styles/quasar-variables.scss',
     }),
   ],
   server: {
