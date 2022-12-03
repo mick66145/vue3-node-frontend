@@ -48,7 +48,7 @@ export default defineConfig({
       include: path.resolve(__dirname, 'src/locales/**'),
     }),
     quasar({
-      sassVariables: 'src/styles/quasar-variables.scss',
+      sassVariables: 'src/styles/abstracts/quasar-variables.scss',
     }),
   ],
   server: {
