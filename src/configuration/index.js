@@ -1,7 +1,5 @@
 const config = {
   backendHost: '$VITE_APP_BACKEND_HOST',
-  appVersion: '$VITE_APP_VERSION',
-  imgServerHost: '$VITE_APP_IMG_SERVER_HOST',
 }
 
 // 代入與替換

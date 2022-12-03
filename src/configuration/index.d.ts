@@ -1,4 +1,4 @@
-type ConfigKey = 'backendHost' | 'appVersion' | 'appTitle' | 'isLocal' | 'imgServerHost';
+type ConfigKey = 'backendHost';
 
 
 export default function Configuration(name: ConfigKey): string;
