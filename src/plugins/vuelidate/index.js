@@ -1,70 +1,101 @@
-import { email, required, sameAs, maxLength, requiredIf, numeric, minLength, maxValue, helpers, minValue, decimal } from '@vuelidate/validators'
+// https://github.com/cuatromedios/quasar-app-extension-vuelidate-rules
 
-export const _email = {
-  ...email,
-  $message: '信箱格式錯誤',
-}
+import * as methods from '@vuelidate/validators'
 
-export const _required = {
-  ...required,
-  $message: '必填',
-}
-
-export const _requiredIf = (target) => ({
-  ...requiredIf(target),
-  $message: '必填',
-})
-
-export const _phone = {
-  $validator: value => /^09[0-9]{8}$/.test(value),
-  $message: '手機格式錯誤',
-}
-
-export const _length = (length) => ({
-  $params: { type: 'length', value: length },
-  $validator: value => value.length === length,
-  $message: `長度必須為 ${length} 位`,
-})
-
-export const _maxLength = (length) => ({
-  ...maxLength(length),
-  $message: `最多為 ${length} 個字`,
-})
-
-export const _minLength = (length) => ({
-  ...minLength(length),
-  $message: `最短為 ${length} 個字`,
-})
-
-export const _maxValue = (max, message) => helpers.withMessage(
-  ({ $params }) => message || `最多為 ${$params.max}`,
-  maxValue(max),
-)
-
-export const _minValue = (min, message) => helpers.withMessage(
-  ({ $params }) => message || `最少為 ${$params.min}`,
-  minValue(min),
-)
-
-export const _sameAs = (target) => ({
-  ...sameAs(target),
-  $message: '資料不相同',
-})
-
-export const _numeric = {
-  ...numeric,
-  $message: '請輸入數字',
-}
-
-export const _decimal = {
-  ...decimal,
-  $message: '請輸入數字',
-}
-
-export default {
-  install (Vue) {
-
+export const vuelidate = {
+  is (value, message) {
+    message = message !== undefined ? message : false
+    return (val) => {
+      let result
+      switch (typeof value) {
+      case 'string':
+        result = String(val) === value
+        break
+      case 'number':
+        result = Number(val) === value
+        break
+      default:
+        result = val === value
+      }
+      return result || message
+    }
   },
-  _email,
-  _required,
+  required (message = false) {
+    return (val) => methods.required.$validator(val) || message
+  },
+  requiredIf (ref, message = false) {
+    return (val) => methods.requiredIf(ref).$validator(val) || message
+  },
+  requiredUnless (ref, message = false) {
+    return (val) => methods.requiredUnless(ref).$validator(val) || message
+  },
+  minLength (length, message = false) {
+    return (val) => methods.minLength(length).$validator(val) || message
+  },
+  maxLength (length, message = false) {
+    return (val) => methods.maxLength(length).$validator(val) || message
+  },
+  minValue (value, message = false) {
+    return (val) => methods.minValue(value).$validator(val) || message
+  },
+  maxValue (value, message = false) {
+    return (val) => methods.maxValue(value).$validator(val) || message
+  },
+  between (min, max, message = false) {
+    return (val) => methods.between(min, max).$validator(val) || message
+  },
+  alpha (message = false) {
+    return (val) => methods.alpha.$validator(val) || message
+  },
+  alphaNum (message = false) {
+    return (val) => methods.alphaNum.$validator(val) || message
+  },
+  numeric (message = false) {
+    return (val) => methods.numeric.$validator(val) || message
+  },
+  integer (message = false) {
+    return (val) => methods.integer.$validator(val) || message
+  },
+  decimal (message = false) {
+    return (val) => methods.decimal.$validator(val) || message
+  },
+  email (message = false) {
+    return (val) => methods.email.$validator(val) || message
+  },
+  ipAddress (message = false) {
+    return (val) => methods.ipAddress.$validator(val) || message
+  },
+  macAddress (separator = ':', message = false) {
+    return (val) => methods.macAddress.$validator(separator)(val) || message
+  },
+  url (message = false) {
+    return (val) => methods.url.$validator(val) || message
+  },
+  or (...args) {
+    let message = false
+    if (typeof args[args.length - 1] === 'string') {
+      message = args.pop()
+    }
+    return (val) => methods.or(...args).$validator(val) || message
+  },
+  and (...args) {
+    let message = false
+    if (typeof args[args.length - 1] === 'string') {
+      message = args.pop()
+    }
+    return (val) => methods.and(...args).$validator(val) || message
+  },
+  not (rule, message = false) {
+    return (val) => methods.not(rule).$validator(val) || message
+  },
+  sameAs (locator, message = false) {
+    return (val) => val === locator || message
+  },
+}
+
+export const useVuelidate = {
+  install: (app, options) => {
+    app.config.globalProperties.$rules = vuelidate
+    app.provide('vuelidate', vuelidate)
+  },
 }
