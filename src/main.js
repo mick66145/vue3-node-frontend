@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
+// windi
+import 'virtual:windi.css'
+
 import App from './App.vue'
 import router from './router'
 import { useDayjs } from '@/plugins/dayjs'
@@ -8,7 +11,6 @@ import GlobalComponents from './components'
 
 import 'virtual:svg-icons-register'
 
-// import 'virtual:windi.css'
 import '@/styles/index.scss'
 
 import i18n from '@/plugins/i18n'
