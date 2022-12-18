@@ -7,6 +7,22 @@ export default defineConfig({
     include: ['src/**/*.{html,vue,jsx,tsx,svelte}'],
     exclude: ['node_modules', '.git'],
   },
+  theme: {
+    colors: {
+      transparent: 'transparent',
+      primary: 'var(--color-primary)',
+      secondary: 'var(--color-secondary)',
+      accent: 'var(--color-accent)',
+      dark: 'var(--color-dark)',
+      positive: 'var(--color-positive)',
+      negative: 'var(--color-negative)',
+      info: 'var(--color-info)',
+      warning: 'var(--color-warning)',
+      func: {
+        focus: 'var(--color-func-focus)',
+      },
+    },
+  },
   plugins: [
     // require('windicss/plugin/forms'),  // disable base input style
     require('windicss/plugin/typography'),
