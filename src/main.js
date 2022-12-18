@@ -2,6 +2,10 @@ import { createApp } from 'vue'
 import { Quasar } from 'quasar'
 import { createPinia } from 'pinia'
 
+// windi
+import 'virtual:windi.css'
+
+// quasar
 import 'quasar/src/css/index.sass'
 import '@quasar/extras/material-icons/material-icons.css'
 import '@quasar/extras/fontawesome-v5/fontawesome-v5.css'
@@ -13,7 +17,6 @@ import GlobalComponents from './components'
 
 import 'virtual:svg-icons-register'
 
-// import 'virtual:windi.css'
 import '@/styles/index.scss'
 
 import i18n from '@/plugins/i18n'
