@@ -4,7 +4,6 @@ import InputSelect from './form/InputSelect.vue'
 import InputMultipleSelect from './form/InputMultipleSelect.vue'
 import InputPassword from './form/InputPassword.vue'
 import InputDate from './form/InputDate.vue'
-import InputEditor from './form/InputEditor/InputEditor.vue'
 import InputDialog from './form/InputDialog.vue'
 import InputImageUpload from './form/InputImageUpload.vue'
 import InputImage from './form/InputImage.vue'
@@ -16,7 +15,6 @@ export default {
     app.component('InputMultipleSelect', InputMultipleSelect)
     app.component('InputPassword', InputPassword)
     app.component('InputDate', InputDate)
-    app.component('InputEditor', InputEditor)
     app.component('InputDialog', InputDialog)
     app.component('InputImageUpload', InputImageUpload)
     app.component('InputImage', InputImage)
