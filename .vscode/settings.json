@@ -30,5 +30,7 @@
         "titleBar.activeBackground": "#3B3B6C",
         "titleBar.activeForeground": "#FBFBFD"
     },
-    "svn.ignoreMissingSvnWarning": true
+    "svn.ignoreMissingSvnWarning": true,
+    "i18n-ally.keystyle": "nested",
+    "css.lint.unknownAtRules": "ignore"
 }
