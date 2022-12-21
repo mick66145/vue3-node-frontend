@@ -89,7 +89,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 .image-cropper {
   --x-unit: v-bind("xUnit");
   --y-unit: v-bind("yUnit");

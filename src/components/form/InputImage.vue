@@ -11,7 +11,20 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">
             <q-item>
-              <input-image-upload class="full-width" :img-src="uploadPreview" @on-file="onFile" />
+              <q-item-section>
+                <input-image-upload class="full-width" :img-src="uploadPreview" @on-file="onFile" />
+              </q-item-section>
+            </q-item>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <q-item>
+              <input-text
+                v-model="state.title"
+                class="full-width"
+                label="圖片標題"
+                placeholder="請輸入圖片標題"
+              />
             </q-item>
           </div>
 
@@ -20,19 +33,9 @@
               <input-text
                 v-model="state.alt"
                 class="full-width"
-                label="Alt Text"
-                placeholder="請輸入Alt Text"
-              />
-            </q-item>
-          </div>
-
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <q-item>
-              <input-text
-                v-model="state.caption"
-                class="full-width"
-                label="Caption"
-                placeholder="請輸入Caption"
+                label="圖片描述文字"
+                placeholder="請輸入圖片描述文字"
+                hint="做為圖片替代文字，用來描述圖片內容，當圖片失效時才會顯示"
               />
             </q-item>
           </div>
@@ -135,9 +138,9 @@ export default defineComponent({
     const onOpen = () => {
       state.image = props.modelValue
       if (props.modelValue !== null) {
-        const { alt, caption } = props.modelValue
+        const { alt, title } = props.modelValue
         state.alt = alt
-        state.caption = caption
+        state.title = title
       }
     }
 
@@ -174,7 +177,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .input-image {
   @apply w-full;
 

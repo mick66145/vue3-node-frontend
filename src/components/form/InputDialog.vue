@@ -83,7 +83,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .q-card {
   .q-dialog-body {
     @apply min-h-25rem max-h-40em;

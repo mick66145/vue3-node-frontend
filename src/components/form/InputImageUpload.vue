@@ -15,11 +15,14 @@
         <img v-if="imgSrc" class="w-full" :src="imgSrc" alt="">
         <div v-else class="flex-center row column">
           <svg-icon color="gray" icon="cloud-arrow-up" class="cursor-pointer" size="56" />
-          <div class="q-uploader__title">Drop file here or click to upload</div>
+          <div class="q-uploader__title">將檔案拖放到此處或點擊上傳</div>
         </div>
       </div>
     </template>
   </q-uploader>
+  <div class="q-field__bottom">
+    請上傳 JPG 或 PNG 格式圖片，檔案大小為 2MB。
+  </div>
 </template>
 
 <script>
@@ -57,14 +60,14 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .q-uploader {
   @apply cursor-pointer w-full;
 
-  border: 2px dashed #d3d3d4;
+  border: dashed 2px #d3d3d4;
 
   &:hover {
-    border: 2px dashed #008acb;
+    border: 2px dashed $primary;
   }
 
   &:deep(.q-uploader__header) {
