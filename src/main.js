@@ -2,12 +2,12 @@ import { createApp } from 'vue'
 import { Quasar } from 'quasar'
 import { createPinia } from 'pinia'
 
-// windi
-import 'virtual:windi.css'
-
 // quasar
 import 'quasar/src/css/index.sass'
 import '@quasar/extras/material-icons/material-icons.css'
+
+// windi
+import 'virtual:windi.css'
 
 import App from './App.vue'
 import router from './router'
