@@ -4,22 +4,22 @@
       <div class="pic-404">
         <img
           class="pic-404__parent"
-          src="@/assets/404-images/404.png"
+          src="@/assets/images/404-images/404.png"
           alt="404"
         >
         <img
           class="left pic-404__child"
-          src="@/assets/404-images/404-cloud.png"
+          src="@/assets/images/404-images/404-cloud.png"
           alt="404"
         >
         <img
           class="mid pic-404__child"
-          src="@/assets/404-images/404-cloud.png"
+          src="@/assets/images/404-images/404-cloud.png"
           alt="404"
         >
         <img
           class="right pic-404__child"
-          src="@/assets/404-images/404-cloud.png"
+          src="@/assets/images/404-images/404-cloud.png"
           alt="404"
         >
       </div>
