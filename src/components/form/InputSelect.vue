@@ -10,6 +10,8 @@
     :input-debounce="inputDebounce"
     :transition-show="transitionShow"
     :transition-hide="transitionHide"
+    :option-label="optionLabelFn"
+    :option-value="optionValueFn"
     @filter="filterFn"
   >
     <template v-if="$slots.default" #default>
@@ -61,7 +63,7 @@
     <template #no-option>
       <q-item>
         <q-item-section class="text-grey">
-          No results
+          無此結果
         </q-item-section>
       </q-item>
     </template>
@@ -79,9 +81,10 @@
 <script>
 import { useVModel } from '@vueuse/core'
 import { defineComponent, ref } from 'vue-demi'
+import { selectMatchItem } from '@/utils/filter'
 export default defineComponent({
   props: {
-    modelValue: { type: [String, Number, null] },
+    modelValue: { type: [String, Number, null, Object] },
     options: { type: Array, default () { return [] } },
     clearable: { type: Boolean, default: true },
     outlined: { type: Boolean, default: true },
@@ -91,6 +94,8 @@ export default defineComponent({
     inputDebounce: { type: Number, default: 0 },
     transitionShow: { type: String, default: 'scale' },
     transitionHide: { type: String, default: 'scale' },
+    optionLabel: { type: String, default: 'name' },
+    optionValue: { type: [String, Number, Object] },
   },
   emits: [
     'update:modelValue',
@@ -101,14 +106,22 @@ export default defineComponent({
     const filterFn = (val, update, abort) => {
       update(() => {
         const needle = val.toLowerCase()
-        filterOptions.value = props.options.filter(v => v.toLowerCase().indexOf(needle) > -1)
+        filterOptions.value = selectMatchItem(props.options, needle)
       })
+    }
+    const optionValueFn = (item) => {
+      return props.optionValue ? item[props.optionValue] : item
+    }
+    const optionLabelFn = (item) => {
+      return item[props.optionLabel] ? item[props.optionLabel] : item
     }
     return {
       observeValue,
       filterOptions,
-      emit,
       filterFn,
+      optionValueFn,
+      optionLabelFn,
+      emit,
     }
   },
 })
