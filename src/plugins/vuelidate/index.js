@@ -91,6 +91,9 @@ export const vuelidate = {
   sameAs (locator, message = false) {
     return (val) => val === locator || message
   },
+  regex (regex, message = false) {
+    return (val) => regex.test(val) || message
+  },
 }
 
 export const useVuelidate = {
