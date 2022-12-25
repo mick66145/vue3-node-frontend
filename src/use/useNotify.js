@@ -10,6 +10,12 @@ export default function useNotify () {
     position,
   })
 
+  const notifyAPIError = ({ message }) => $q.notify({
+    message,
+    type: 'negative',
+    position: 'top',
+  })
+
   const customNotify = ({ message, timeout = 3000, position = 'top', color = 'brown', textColor = 'white', icon = 'announcement' }) => $q.notify({
     message,
     timeout,
@@ -21,6 +27,7 @@ export default function useNotify () {
 
   return {
     notify,
+    notifyAPIError,
     customNotify,
   }
 }
