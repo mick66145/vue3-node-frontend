@@ -7,6 +7,9 @@
         @click="isPwd = !isPwd"
       />
     </template>
+    <template v-if="$slots.hint" #hint>
+      <slot name="hint" />
+    </template>
   </input-text>
 </template>
 
