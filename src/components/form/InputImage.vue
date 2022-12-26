@@ -1,56 +1,64 @@
 <template>
-  <div class="input-image aspect-500/2000">
-    <div class="cursor-pointer flex items-center justify-center" @click="showDialog = true">
-      <img v-if="preview" class="w-full transform scale-98" :src="preview" alt="">
-      <q-icon v-else name="add" size="2em" />
-    </div>
-
-    <!-- ANCHOR 上傳 -->
-    <input-dialog v-model="showDialog" title="上傳圖片 : " @show="onOpen" @save="onSave" @cancel="onCancelCopper">
-      <q-form ref="form">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <q-item>
-              <q-item-section>
-                <input-image-upload class="full-width" :img-src="uploadPreview" @on-file="onFile" />
-              </q-item-section>
-            </q-item>
-          </div>
-
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <q-item>
-              <input-text
-                v-model="state.title"
-                class="full-width"
-                label="圖片標題"
-                placeholder="請輸入圖片標題"
-              />
-            </q-item>
-          </div>
-
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <q-item>
-              <input-text
-                v-model="state.alt"
-                class="full-width"
-                label="圖片描述文字"
-                placeholder="請輸入圖片描述文字"
-                hint="做為圖片替代文字，用來描述圖片內容，當圖片失效時才會顯示"
-              />
-            </q-item>
-          </div>
+  <q-field
+    v-model="observeValue"
+    :outlined="outlined"
+    class="h-full full-width"
+  >
+    <template #control>
+      <div class="input-image">
+        <div class="cursor-pointer flex min-h-34 items-center justify-center" @click="showDialog = true">
+          <img v-if="preview" class="w-full transform scale-98" :src="preview" alt="">
+          <q-icon v-else name="add" size="2em" />
         </div>
-      </q-form>
-    </input-dialog>
 
-    <input-dialog v-model="showCropper" title="裁切圖片 : " @save="onCopper" @cancel="onCancelCopper">
-      <image-cropper
-        ref="cropper"
-        :source="tempCropper"
-        :aspect-ratio="aspect"
-      />
-    </input-dialog>
-  </div>
+        <!-- ANCHOR 上傳 -->
+        <input-dialog v-model="showDialog" title="上傳圖片 : " @show="onOpen" @save="onSave" @cancel="onCancelCopper">
+          <q-form ref="form">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <q-item>
+                  <q-item-section>
+                    <input-image-upload class="full-width" :img-src="uploadPreview" @on-file="onFile" />
+                  </q-item-section>
+                </q-item>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <q-item>
+                  <input-text
+                    v-model="state.title"
+                    class="full-width"
+                    label="圖片標題"
+                    placeholder="請輸入圖片標題"
+                  />
+                </q-item>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <q-item>
+                  <input-text
+                    v-model="state.alt"
+                    class="full-width"
+                    label="圖片描述文字"
+                    placeholder="請輸入圖片描述文字"
+                    hint="做為圖片替代文字，用來描述圖片內容，當圖片失效時才會顯示"
+                  />
+                </q-item>
+              </div>
+            </div>
+          </q-form>
+        </input-dialog>
+
+        <input-dialog v-model="showCropper" title="裁切圖片 : " @save="onCopper" @cancel="onCancelCopper">
+          <image-cropper
+            ref="cropper"
+            :source="tempCropper"
+            :aspect-ratio="aspect"
+          />
+        </input-dialog>
+      </div>
+    </template>
+  </q-field>
 </template>
 
 <script>
@@ -67,6 +75,7 @@ export default defineComponent({
     error: { type: String, default: '' },
     accept: { type: String, default: 'image/png, image/jpeg, image/jpg' },
     aspect: { type: Number },
+    outlined: { type: Boolean, default: true },
   },
   emits: ['update:modelValue'],
   setup (props, { emit }) {
@@ -85,7 +94,7 @@ export default defineComponent({
     // computed
     const observeValue = computed({
       get () {
-        if (typeof props.modelValue === 'string') return { filename: props.modelValue }
+        // if (typeof props.modelValue === 'string') return { filename: props.modelValue }
         return props.modelValue
       },
       set (value) {
@@ -183,4 +192,13 @@ export default defineComponent({
 
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%' fill='none' stroke='%23aaaaaa' stroke-width='5' stroke-dasharray='9%2c 18' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 }
+
+.q-field {
+  &:deep(.q-field__inner) {
+    .q-field__control-container {
+      @apply pt-36px;
+    }
+  }
+}
+
 </style>
