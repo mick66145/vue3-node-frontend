@@ -34,8 +34,8 @@ export default function useCRUD ({
 
   const form = ref()
 
-  const callCreateFetch = async (payload) => {
-    const res = await reqCreate.execute(0, payload)
+  const callCreateFetch = async (id = null, payload) => {
+    const res = await reqCreate.execute(0, id, payload)
     if (reqCreate.error.value) {
       const message = reqCreate.error.value.response.data.message
       notifyAPIError({ message })
@@ -84,9 +84,9 @@ export default function useCRUD ({
     }
   }
 
-  const callReadListFetch = async (payload = null) => {
+  const callReadListFetch = async (id = null, payload = null) => {
     console.log('🚀 ~ callReadListFetch ~ payload', payload)
-    const res = await reqReadList.execute(0, payload)
+    const res = await reqReadList.execute(0, id, payload)
     if (reqReadList.error.value) {
       const message = reqReadList.error.value.response.data.message
       notifyAPIError({ message })
