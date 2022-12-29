@@ -1,8 +1,10 @@
 import Configuration from '@/configuration'
 import axios from 'axios'
+import useNotify from '@/use/useNotify'
 
 export const handleError = (error) => {
   const { response } = error
+  const { notifyAPIError } = useNotify()
   if (response) {
     return Promise.reject(error)
   }
@@ -10,6 +12,7 @@ export const handleError = (error) => {
   // can not receive response
   // 請求過時或者是斷網
   if (!window.navigator.onLine) {
+    notifyAPIError({ message: '網絡有些問題。請重新加載' })
   } else {
     // maybe Program have some problem
     return Promise.reject(error)
