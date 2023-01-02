@@ -7,6 +7,7 @@ import InputDate from './form/InputDate.vue'
 import InputDialog from './form/InputDialog.vue'
 import InputImageUpload from './form/InputImageUpload.vue'
 import InputImage from './form/InputImage.vue'
+import Pagination from './Pagination.vue'
 export default {
   install (app) {
     app.component('SvgIcon', SvgIcon)
@@ -18,5 +19,6 @@ export default {
     app.component('InputDialog', InputDialog)
     app.component('InputImageUpload', InputImageUpload)
     app.component('InputImage', InputImage)
+    app.component('Pagination', Pagination)
   },
 }
