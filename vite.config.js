@@ -10,7 +10,7 @@ import path from 'path'
 import stylelint from 'vite-plugin-stylelint'
 
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
-
+import mkcert from 'vite-plugin-mkcert'
 const fs = require('fs')
 
 const https = () => {
@@ -34,6 +34,7 @@ export default defineConfig({
     vueJsx(),
     WindiCSS(),
     stylelint(),
+    mkcert(),
     createSvgIconsPlugin({
     // Specify the icon folder to be cached
       iconDirs: [path.resolve(process.cwd(), 'src/icons')],
@@ -46,7 +47,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    ...https(),
+    https: false,
     cors: true,
     port: 3000,
   },
