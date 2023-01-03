@@ -9,7 +9,6 @@ export default function useDataTable ({ searchParames = {}, localStorageKey = 'c
       search: {
         page: 1,
         page_size: 10,
-        keyword: null,
       },
     }
     setLocalStorage(localStorageKey, localStorageObj)
@@ -17,7 +16,9 @@ export default function useDataTable ({ searchParames = {}, localStorageKey = 'c
   }
   for (const [key, value] of Object.entries(searchParames)) {
     !localStorage.search[key] && (localStorage.search[key] = value)
+    key === 'page_size' && (localStorage.search[key] = value)
   }
+  setLocalStorage(localStorageKey, localStorage)
   const search = reactive(localStorage.search)
   const data = ref([])
   const total = ref(0)
