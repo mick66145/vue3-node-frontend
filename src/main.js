@@ -15,7 +15,7 @@ import { useDayjs } from '@/plugins/dayjs'
 import GlobalComponents from './components'
 
 import 'virtual:svg-icons-register'
-
+import 'quill/dist/quill.snow.css'
 import '@/styles/index.scss'
 
 import i18n from '@/plugins/i18n'
