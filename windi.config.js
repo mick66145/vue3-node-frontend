@@ -25,7 +25,7 @@ export default defineConfig({
       },
     },
     screens: {
-      xs: 0,
+      xs: '0px',
       sm: '600px',
       md: '1024px',
       lg: '1440px',
