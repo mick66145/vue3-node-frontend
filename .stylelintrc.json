@@ -7,6 +7,7 @@
     "rules": {
         "selector-class-pattern": null,
         "no-empty-source": null,
-        "keyframes-name-pattern": "\\w.+"
+        "keyframes-name-pattern": "\\w.+",
+        "scss/operator-no-unspaced": null
     }
 }
