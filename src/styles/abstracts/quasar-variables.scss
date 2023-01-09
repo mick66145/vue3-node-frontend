@@ -21,10 +21,10 @@ $animate-repeat: 1 ;
 
 // Max width at which point
 // current size ends
-$breakpoint-xs: 599px ;
-$breakpoint-sm: 1023px ;
-$breakpoint-md: 1439px ;
-$breakpoint-lg: 1919px ;
+$breakpoint-xs: 767px ;
+$breakpoint-sm: 991px ;
+$breakpoint-md: 1199px ;
+$breakpoint-lg: 1439px ;
 $flex-cols: 12 ;
 $flex-gutter-xs: ($space-base * 0.25) ;
 $flex-gutter-sm: ($space-base * 0.5) ;
@@ -38,7 +38,7 @@ $body-line-height: 1.5 ;
 $flex-gutter: ("none": 0, "xs": $flex-gutter-xs, "sm": $flex-gutter-sm, "md": $flex-gutter-md, "lg": $flex-gutter-lg, "xl": $flex-gutter-xl) ;
 
 // sorry for long line; we need .sass and it doesn't support multi-line list
-$sizes: ("xs": 0, "sm": ($breakpoint-xs + 1), "md": ($breakpoint-sm + 1), "lg": ($breakpoint-md + 1), "xl": ($breakpoint-lg + 1)) ;
+$sizes: ("xs": 575, "sm": ($breakpoint-xs + 1), "md": ($breakpoint-sm + 1), "lg": ($breakpoint-md + 1), "xl": ($breakpoint-lg + 1)) ;
 $breakpoint-xs-max: (map-get($sizes, "sm") - 0.02) ;
 $breakpoint-sm-min: map-get($sizes, "sm") ;
 $breakpoint-sm-max: (map-get($sizes, "md") - 0.02) ;
