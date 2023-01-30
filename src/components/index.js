@@ -13,6 +13,7 @@ import InputToggle from './form/InputToggle.vue'
 import InputSearch from './form/InputSearch.vue'
 import InputTextarea from './form/InputTextarea.vue'
 import InputCheckbox from './form/InputCheckbox.vue'
+import BaseButton from './button/BaseButton.vue'
 import Pagination from './Pagination.vue'
 export default {
   install (app) {
@@ -31,6 +32,7 @@ export default {
     app.component('InputSearch', InputSearch)
     app.component('InputTextarea', InputTextarea)
     app.component('InputCheckbox', InputCheckbox)
+    app.component('BaseButton', BaseButton)
     app.component('Pagination', Pagination)
   },
 }
