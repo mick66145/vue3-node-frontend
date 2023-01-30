@@ -7,6 +7,12 @@ import InputDate from './form/InputDate.vue'
 import InputDialog from './form/InputDialog.vue'
 import InputImageUpload from './form/InputImageUpload.vue'
 import InputImage from './form/InputImage.vue'
+import InputOptionGroup from './form/InputOptionGroup.vue'
+import InputDateRange from './form/InputDateRange.vue'
+import InputToggle from './form/InputToggle.vue'
+import InputSearch from './form/InputSearch.vue'
+import InputTextarea from './form/InputTextarea.vue'
+import InputCheckbox from './form/InputCheckbox.vue'
 import Pagination from './Pagination.vue'
 export default {
   install (app) {
@@ -19,6 +25,12 @@ export default {
     app.component('InputDialog', InputDialog)
     app.component('InputImageUpload', InputImageUpload)
     app.component('InputImage', InputImage)
+    app.component('InputOptionGroup', InputOptionGroup)
+    app.component('InputDateRange', InputDateRange)
+    app.component('InputToggle', InputToggle)
+    app.component('InputSearch', InputSearch)
+    app.component('InputTextarea', InputTextarea)
+    app.component('InputCheckbox', InputCheckbox)
     app.component('Pagination', Pagination)
   },
 }

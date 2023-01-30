@@ -71,4 +71,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.q-input {
+  @apply py-10px;
+}
 </style>

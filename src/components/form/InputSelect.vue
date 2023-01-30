@@ -5,6 +5,7 @@
     :clearable="clearable"
     :outlined="outlined"
     :use-input="useInput"
+    :map-options="mapOptions"
     :hide-selected="hideSelected"
     :fill-input="fillInput"
     :input-debounce="inputDebounce"
@@ -13,6 +14,7 @@
     :option-label="optionLabelFn"
     :option-value="optionValueFn"
     @filter="filterFn"
+    @clear="clearFn"
   >
     <template v-if="$slots.default" #default>
       <slot name="default" />
@@ -89,13 +91,14 @@ export default defineComponent({
     clearable: { type: Boolean, default: true },
     outlined: { type: Boolean, default: true },
     useInput: { type: Boolean, default: true },
+    mapOptions: { type: Boolean, default: true },
     hideSelected: { type: Boolean, default: true },
     fillInput: { type: Boolean, default: true },
     inputDebounce: { type: Number, default: 0 },
     transitionShow: { type: String, default: 'scale' },
     transitionHide: { type: String, default: 'scale' },
     optionLabel: { type: String, default: 'name' },
-    optionValue: { type: [String, Number, Object] },
+    optionValue: { type: String, default: 'id' },
   },
   emits: [
     'update:modelValue',
@@ -109,8 +112,11 @@ export default defineComponent({
         filterOptions.value = selectMatchItem(props.options, needle)
       })
     }
+    const clearFn = (val) => {
+      observeValue.value = ''
+    }
     const optionValueFn = (item) => {
-      return props.optionValue ? item[props.optionValue] : item
+      return item[props.optionValue] ? item[props.optionValue] : item
     }
     const optionLabelFn = (item) => {
       return item[props.optionLabel] ? item[props.optionLabel] : item
@@ -119,6 +125,7 @@ export default defineComponent({
       observeValue,
       filterOptions,
       filterFn,
+      clearFn,
       optionValueFn,
       optionLabelFn,
       emit,
@@ -128,4 +135,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.q-select {
+  @apply py-10px;
+}
 </style>
