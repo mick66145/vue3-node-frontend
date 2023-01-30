@@ -1,13 +1,21 @@
 import { reactive, ref } from 'vue-demi'
 import useSessionStorage from './useSessionStorage'
+import mapKeys from 'lodash-es/mapKeys'
 
 export default function useServerDataTable ({
   searchParames = {},
+  unSessionStorageParames = [], // [{field:string}]
   sessionStorageKey = 'clientFrontendServerDataTable',
   callback = () => {},
 }) {
   const { setSessionStorage, getSessionStorage } = useSessionStorage()
   let sessionStorage = getSessionStorage(sessionStorageKey)
+
+  const search = reactive({})
+  const data = ref([])
+  const total = ref(0)
+
+  const unSessionStorageParamesField = unSessionStorageParames.map((item) => item.field)
   if (!sessionStorage) {
     const sessionStorageObj = {
       search: {
@@ -18,14 +26,20 @@ export default function useServerDataTable ({
     setSessionStorage(sessionStorageKey, sessionStorageObj)
     sessionStorage = getSessionStorage(sessionStorageKey)
   }
+
+  mapKeys(sessionStorage.search, (_, key) => {
+    search[key] = sessionStorage.search[key]
+  })
+
   for (const [key, value] of Object.entries(searchParames)) {
-    !sessionStorage.search[key] && (sessionStorage.search[key] = value)
-    key === 'page_size' && (sessionStorage.search[key] = value)
+    (!sessionStorage.search[key] && !unSessionStorageParamesField.includes(key)) && (search[key] = value)
   }
-  setSessionStorage(sessionStorageKey, sessionStorage)
-  const search = reactive(sessionStorage.search)
-  const data = ref([])
-  const total = ref(0)
+
+  setSessionStorage(sessionStorageKey, { search })
+
+  for (const [key, value] of Object.entries(searchParames)) {
+    (unSessionStorageParamesField.includes(key)) && (search[key] = value)
+  }
 
   const onChangePage = (page) => {
     search.page = page
@@ -44,6 +58,9 @@ export default function useServerDataTable ({
   }
 
   const onReset = () => {
+    for (const [key, value] of Object.entries(searchParames)) {
+      search[key] = value
+    }
     search.page = 1
     setSessionStorage(sessionStorageKey, { search })
     if (callback && typeof (callback) === 'function') {
