@@ -1,6 +1,6 @@
 import configuration from '@/configuration'
 
-const webTitle = configuration('title') || '財團法人國家實驗研究院'
+const webTitle = configuration('title') || 'ClientFrontend Base'
 
 const prefix =
   import.meta.env.MODE !== 'development'
