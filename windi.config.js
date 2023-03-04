@@ -1,4 +1,5 @@
 import { defineConfig } from 'windicss/helpers'
+import colors from 'windicss/colors'
 
 export default defineConfig({
   attributify: true,
@@ -14,7 +15,7 @@ export default defineConfig({
         primary: 'var(--color-primary)',
         secondary: 'var(--color-secondary)',
         accent: 'var(--color-accent)',
-        dark: 'var(--color-dark)',
+        qDark: 'var(--color-dark)',
         positive: 'var(--color-positive)',
         negative: 'var(--color-negative)',
         info: 'var(--color-info)',
@@ -22,6 +23,30 @@ export default defineConfig({
         func: {
           focus: 'var(--color-func-focus)',
         },
+        pink: colors.pink,
+        rose: colors.rose,
+        red: colors.red,
+        orange: colors.orange,
+        yellow: colors.yellow,
+        amber: colors.amber,
+        lime: colors.lime,
+        green: colors.green,
+        emerald: colors.emerald,
+        teal: colors.teal,
+        cyan: colors.cyan,
+        sky: colors.sky,
+        blue: colors.blue,
+        indigo: colors.indigo,
+        purple: colors.purple,
+        violet: colors.violet,
+        fuchsia: colors.fuchsia,
+        gray: colors.gray,
+        slate: colors.slate,
+        stone: colors.stone,
+        neutral: colors.neutral,
+        zinc: colors.zinc,
+        light: colors.light,
+        dark: colors.dark,
       },
     },
     screens: {
