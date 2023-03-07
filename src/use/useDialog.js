@@ -38,20 +38,34 @@ export default function useDialog ({
     data: rowData = null,
     mode: dialogMode = 'create',
     callRead = false,
+    callReadList = false,
+    payload = null,
   }) => {
     id.value = dataId
     mode.value = dialogMode
     if (rowData) {
-      mapKeys(data.state, (_, key) => {
-        data.state[key] = rowData[key] === undefined ? '' : rowData[key]
-      })
+      if (Array.isArray(rowData)) {
+        data.list = rowData
+        data.total = rowData.length
+      } else {
+        mapKeys(data.state, (_, key) => {
+          data.state[key] = rowData[key] === undefined ? '' : rowData[key]
+        })
+      }
     }
     if (callRead) {
-      const [res, error] = await callReadFetch(dataId)
+      const [res] = await callReadFetch(dataId)
       if (res) {
         mapKeys(data.state, (_, key) => {
           data.state[key] = res[key] === undefined ? '' : res[key]
         })
+      }
+    }
+    if (callReadList) {
+      const [res] = dataId ? await callReadListFetch(dataId, payload) : await callReadListFetch(payload)
+      if (res) {
+        data.list = res.list
+        data.total = res.total
       }
     }
     isShowDialog.value = true
