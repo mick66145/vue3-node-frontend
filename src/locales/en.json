@@ -1,3 +1,7 @@
 {
-    "語系": "language"
+  "g": {
+    "system": {
+      "system-name": "ClientFrontend Base"
+    }
+  }
 }
