@@ -67,14 +67,20 @@ export function formatNumber (input, symbol, index) {
   return source.join(symbol)
 }
 
-export function convertTrueFalseString (word) {
-  if (typeof word === 'string') {
-    switch (word.toLowerCase().trim()) {
-    case 'yes': case 'true': case '1': return true
-    case 'no': case 'false': case '0': case null: return false
-    default: return Boolean(word)
+export const getValueByPath = function (object, prop) {
+  prop = prop || ''
+  const paths = prop.split('.')
+  let current = object
+  let result = null
+  for (let i = 0, j = paths.length; i < j; i++) {
+    const path = paths[i]
+    if (!current) break
+
+    if (i === j - 1) {
+      result = current[path]
+      break
     }
-  } else {
-    return word
+    current = current[path]
   }
+  return result
 }

@@ -1,7 +1,7 @@
 // https://juejin.cn/post/6844904113986076686
 
 /** 單條件精準查找
-* @param {Object} lists 所有數據
+* @param {Array} lists 所有數據
 * @param {string} key 需要查詢的數據的鍵值
 * @param {string} value 需要查詢的值
 */
@@ -11,7 +11,7 @@ export const searchKeyValue = (lists, key, value) => {
 }
 
 /** 單條件多值精準查找
-* @param {Object} lists 所有數據
+* @param {Array} lists 所有數據
 * @param {string} key 需要查詢的數據的鍵值
 * @param {Array} valueArr 需要查詢的值
 */
@@ -21,7 +21,7 @@ export const searchKeyValues = (lists, key, valueArr) => {
 }
 
 /** 多條件精準查找
-* @param {Object} lists 所有數據
+* @param {Array} lists 所有數據
 * @param {Object} filters 需要查詢的數據
 */
 export const searchKeysValue = (lists, filters) => {
@@ -31,7 +31,7 @@ export const searchKeysValue = (lists, filters) => {
 }
 
 /** 多條件多值精準查找
- * @param {Object} lists 所有數據
+ * @param {Array} lists 所有數據
  * @param {Object} filters 需要查詢的數據
  */
 export const searchKeysValues = (lists, filters) => {
@@ -49,22 +49,52 @@ export const searchKeysValues = (lists, filters) => {
   return lists
 }
 
-/**
- * @param {Object} lists 所有數據
+/** 模糊查詢
+ * @param {Array} lists 所有數據
  * @param {string} keyWord 需要查詢的關鍵字
  */
 export const selectMatchItem = (lists, keyWord) => {
   const resArr = []
   lists.filter(item => {
-    for (const i in item) {
-      if (Object.prototype.toString.call(item[i]) === '[object String]') {
-        if (item[i].indexOf(keyWord) >= 0) {
+    if (Object.prototype.toString.call(item) === '[object String]') {
+      if (item.includes(keyWord)) {
+        resArr.push(item)
+      }
+    } else {
+      for (const i in item) {
+        if (Object.prototype.toString.call(item[i]) === '[object String]') {
+          if (item[i].includes(keyWord)) {
+            resArr.push(item)
+            break
+          }
+        }
+      }
+    }
+    return lists
+  })
+  return resArr
+}
+
+/** 多值模糊查詢
+* @param {Array} lists 所有數據
+* @param {Array} keyWords 需要查詢的關鍵字
+*/
+export const selectMatchItems = (lists, keyWords) => {
+  const resArr = []
+  lists.filter(item => keyWords.find(keyWord => {
+    if (Object.prototype.toString.call(item) === '[object String]') {
+      if (item.includes(keyWord)) {
+        resArr.push(item)
+      }
+    } else {
+      for (const i in item) {
+        if (item[i].includes(keyWord)) {
           resArr.push(item)
           break
         }
       }
     }
     return lists
-  })
+  }))
   return resArr
 }
