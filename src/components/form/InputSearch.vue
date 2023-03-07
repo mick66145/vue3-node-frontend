@@ -1,6 +1,7 @@
 <template>
   <input-text
     v-model="observeValue"
+    :label="label"
     :placeholder="placeholder"
   >
     <template v-slot:append>
@@ -15,6 +16,7 @@ import { defineComponent } from 'vue-demi'
 export default defineComponent({
   props: {
     modelValue: { type: [String, Number, null] },
+    label: { type: String, default: '關鍵字' },
     placeholder: { type: String, default: '請輸入關鍵字' },
   },
   emits: [

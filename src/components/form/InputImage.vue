@@ -5,20 +5,25 @@
     class="h-full full-width"
   >
     <template #control>
-      <div class="input-image">
+      <div class="mt-1rem input-image">
         <div class="cursor-pointer flex min-h-34 items-center justify-center" @click="showDialog = true">
           <img v-if="preview" class="w-full transform scale-98" :src="preview" alt="">
           <q-icon v-else name="add" size="2em" />
         </div>
 
         <!-- ANCHOR 上傳 -->
-        <input-dialog v-model="showDialog" title="上傳圖片 : " @show="onOpen" @save="onSave" @cancel="onCancelCopper">
+        <base-dialog v-model="showDialog" title="上傳圖片 : " @show="onOpen" @save="onSave" @cancel="onCancelCopper">
           <q-form ref="form">
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <q-item>
                   <q-item-section>
-                    <input-image-upload class="full-width" :img-src="uploadPreview" @on-file="onFile" />
+                    <input-image-upload
+                      ref="imageUpload"
+                      class="full-width"
+                      :img-src="uploadPreview"
+                      @on-file="onFile"
+                    />
                   </q-item-section>
                 </q-item>
               </div>
@@ -47,15 +52,15 @@
               </div>
             </div>
           </q-form>
-        </input-dialog>
+        </base-dialog>
 
-        <input-dialog v-model="showCropper" title="裁切圖片 : " @save="onCopper" @cancel="onCancelCopper">
+        <base-dialog v-model="showCropper" title="裁切圖片 : " @save="onCopper" @cancel="onCancelCopper">
           <image-cropper
             ref="cropper"
             :source="tempCropper"
             :aspect-ratio="aspect"
           />
-        </input-dialog>
+        </base-dialog>
       </div>
     </template>
   </q-field>
@@ -80,6 +85,7 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup (props, { emit }) {
     // data
+    const imageUpload = ref()
     const cropper = ref()
     const showDialog = ref(false)
     let tempRaw = null // 存放圖片原始資料(type, name)
@@ -87,14 +93,13 @@ export default defineComponent({
     const showCropper = ref(false)
     const state = reactive({
       alt: '',
-      caption: '',
+      title: '',
       image: '',
     })
 
     // computed
     const observeValue = computed({
       get () {
-        // if (typeof props.modelValue === 'string') return { filename: props.modelValue }
         return props.modelValue
       },
       set (value) {
@@ -103,33 +108,34 @@ export default defineComponent({
     })
 
     const preview = computed(() => {
-      const { blobURL, filename } = observeValue.value || {}
+      const { blobURL, url, filename } = observeValue.value || {}
       if (blobURL) return blobURL
-
+      if (url) return url
       return getImageSrc({ filename, size: '200x' })
     })
 
     const uploadPreview = computed(() => {
-      const { blobURL, filename } = state.image || {}
+      const { blobURL, url, filename } = state.image || {}
       if (blobURL) return blobURL
-
+      if (url) return url
       return getImageSrc({ filename, size: '200x' })
     })
-
     // use
     const { getImageSrc } = useImgStorage()
-
     // methods
     const onFile = (fileObj) => {
       const { file, base64 } = fileObj
       tempCropper.value = base64
       tempRaw = file
       showCropper.value = true
+      imageUpload.value.removeQueuedFiles()
     }
 
     const onCopper = async () => {
       const { canvas } = await cropper.value.getResult()
       const blob = await new Promise((resolve) => canvas.toBlob(resolve, tempRaw.type))
+      const base64 = canvas.toDataURL(tempRaw.type)
+
       const file = new File(
         [blob],
         tempRaw.name,
@@ -139,6 +145,7 @@ export default defineComponent({
       state.image = {
         blobURL: URL.createObjectURL(blob),
         raw: file,
+        base64: base64,
       }
 
       showCropper.value = false
@@ -154,8 +161,8 @@ export default defineComponent({
     }
 
     const onSave = () => {
-      const { image, alt, caption } = state
-      observeValue.value = { ...image, alt, caption }
+      const { image, alt, title } = state
+      observeValue.value = { ...image, alt, title }
       showDialog.value = false
     }
 
@@ -166,6 +173,7 @@ export default defineComponent({
     }
 
     return {
+      imageUpload,
       cropper,
       showDialog,
       tempRaw,
@@ -192,13 +200,4 @@ export default defineComponent({
 
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%' fill='none' stroke='%23aaaaaa' stroke-width='5' stroke-dasharray='9%2c 18' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 }
-
-.q-field {
-  &:deep(.q-field__inner) {
-    .q-field__control-container {
-      @apply pt-36px;
-    }
-  }
-}
-
 </style>

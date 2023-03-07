@@ -6,6 +6,7 @@
     :outlined="outlined"
     :use-input="useInput"
     :map-options="mapOptions"
+    :emit-value="emitValue"
     :hide-selected="hideSelected"
     :fill-input="fillInput"
     :input-debounce="inputDebounce"
@@ -92,6 +93,7 @@ export default defineComponent({
     outlined: { type: Boolean, default: true },
     useInput: { type: Boolean, default: true },
     mapOptions: { type: Boolean, default: true },
+    emitValue: { type: Boolean, default: false },
     hideSelected: { type: Boolean, default: true },
     fillInput: { type: Boolean, default: true },
     inputDebounce: { type: Number, default: 0 },

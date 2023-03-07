@@ -1,6 +1,6 @@
 <template>
   <div class="rounded-borders py-10px">
-    <label>{{ label }}</label>
+    <label v-if="label">{{ label }}</label>
     <q-option-group
       v-model="observeValue"
       :options="options"
@@ -18,7 +18,7 @@ export default defineComponent({
   props: {
     modelValue: { type: [String, Number, null, Object] },
     options: { type: Array, default () { return [] } },
-    label: { type: String, default: '我是標題' },
+    label: { type: String },
     inline: { type: Boolean, default: true },
     color: { type: String, default: 'primary' },
     type: { type: String },

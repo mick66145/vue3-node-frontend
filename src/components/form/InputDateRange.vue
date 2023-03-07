@@ -1,24 +1,30 @@
 <template>
   <input-text
+    ref="inputDateRange"
     :label="label"
-    :clearable="false"
     :placeholder="placeholder"
     :modelValue="observeValue"
-    @focus="show = true"
+    @focus="focus()"
+    @blur="blur"
+    @clear="clearFn"
   >
-    <template v-slot:prepend>
+    <template #append>
       <q-icon name="event" />
     </template>
 
-    <q-popup-proxy
-      v-if="show"
-      v-model="show"
-      class="flex justify-center"
-      transition-show="scale"
-      transition-hide="scale"
-      context-menu
-    >
-      <!-- <div style="width: 100px;">
+    <template #default>
+      <q-popup-proxy
+        v-if="show"
+        v-model="show"
+        class="flex justify-center"
+        transition-show="scale"
+        transition-hide="scale"
+        persistent
+        no-parent-event
+        no-refocus
+        no-focus
+      >
+        <!-- <div style="width: 100px;">
         <div class="q-mt-md">
           <q-btn
             v-for="({ text,onClick }, index) in pickerOptions.shortcuts"
@@ -30,12 +36,13 @@
           />
         </div>
       </div> -->
-      <q-date ref="datePicker" v-model="dateRangeValue" range @range-end="show = false">
-        <div class="row items-center justify-end">
-          <q-btn v-close-popup label="Close" color="primary" flat />
-        </div>
-      </q-date>
-    </q-popup-proxy>
+        <q-date ref="datePicker" v-model="dateRangeValue" range>
+          <div class="row items-center justify-end">
+            <q-btn v-close-popup label="Close" color="primary" flat />
+          </div>
+        </q-date>
+      </q-popup-proxy>
+    </template>
   </input-text>
 </template>
 
@@ -51,6 +58,7 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup (props, { emit }) {
     // data
+    const inputDateRange = ref()
     const datePicker = ref()
     const show = ref(false)
     const pickerOptions = {
@@ -114,7 +122,6 @@ export default defineComponent({
     const observeValue = computed(() => {
       return props.modelValue ? `${props.modelValue?.from} - ${props.modelValue?.to}` : ''
     })
-
     const dateRangeValue = computed({
       get () {
         return props.modelValue?.from === props.modelValue?.to ? props.modelValue?.from : props.modelValue
@@ -129,12 +136,45 @@ export default defineComponent({
       },
     })
 
+    // methods
+    const showPopup = (isShow) => {
+      setTimeout(() => {
+        show.value = isShow
+      }, '200')
+    }
+    const focus = () => {
+      showPopup(true)
+    }
+    const blur = (evt) => {
+      // 判斷除了close按鈕和日期按鈕以外的按鈕繼續focus
+      if (evt?.relatedTarget.className.includes('q-date') ||
+      evt?.relatedTarget.className.includes('text-null') ||
+      evt?.relatedTarget.className.includes('q-focus-helper') ||
+      evt?.relatedTarget.parentElement.className.includes('q-date__arrow') ||
+      evt?.relatedTarget.className.includes('q-btn--no-uppercase') ||
+      evt?.relatedTarget.className.includes('q-btn--round') ||
+      evt?.relatedTarget.className.includes('q-btn-item')
+      ) {
+        inputDateRange.value.focus()
+      } else {
+        showPopup(false)
+      }
+    }
+    const clearFn = (val) => {
+      dateRangeValue.value = null
+    }
+
     return {
+      inputDateRange,
       datePicker,
       show,
       observeValue,
       dateRangeValue,
       pickerOptions,
+      focus,
+      blur,
+      clearFn,
+      showPopup,
     }
   },
 })
