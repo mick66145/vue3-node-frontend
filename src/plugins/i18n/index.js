@@ -1,12 +1,17 @@
 import { createI18n } from 'vue-i18n'
 import Cookies from 'js-cookie'
 import messages from '@intlify/vite-plugin-vue-i18n/messages'
+import quasarEnLocale from 'quasar/lang/en-Us'
+import quasarZhTwLocale from 'quasar/lang/zh-TW'
 
 // locale value 要 kebab case
 export const locales = {
   en: 'en',
   tw: 'zh-hant-tw',
 }
+
+messages.en = { ...messages.en, ...quasarEnLocale }
+messages['zh-hant-tw'] = { ...messages['zh-hant-tw'], ...quasarZhTwLocale }
 
 export function getLanguage () {
   const chooseLanguage = Cookies.get('language')

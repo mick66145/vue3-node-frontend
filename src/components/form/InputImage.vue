@@ -18,11 +18,11 @@
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <q-item>
                   <q-item-section>
-                    <input-image-upload
+                    <image-uploader
                       ref="imageUpload"
                       class="full-width"
                       :img-src="uploadPreview"
-                      @on-file="onFile"
+                      @onFile="onFile"
                     />
                   </q-item-section>
                 </q-item>

@@ -36,7 +36,15 @@
           />
         </div>
       </div> -->
-        <q-date ref="datePicker" v-model="dateRangeValue" range>
+        <q-date
+          ref="datePicker"
+          v-model="dateRangeValue"
+          :title="dateTitle"
+          :subtitle="dateSubtitle"
+          :options="options"
+          :locale="locale"
+          range
+        >
           <div class="row items-center justify-end">
             <q-btn v-close-popup label="Close" color="primary" flat />
           </div>
@@ -49,15 +57,20 @@
 <script>
 import $dayjs from '@/plugins/dayjs'
 import { defineComponent, ref, computed } from 'vue-demi'
+import { useI18n } from 'vue-i18n'
+import { useApp } from '@/stores/app'
 export default defineComponent({
   props: {
     modelValue: { type: [String, Object] },
     label: { type: String },
     placeholder: { type: String, default: '請選擇開始日期至結束日期' },
+    options: { type: Array },
   },
   emits: ['update:modelValue'],
   setup (props, { emit }) {
     // data
+    const { messages } = useI18n()
+    const store = useApp()
     const inputDateRange = ref()
     const datePicker = ref()
     const show = ref(false)
@@ -135,6 +148,22 @@ export default defineComponent({
         }
       },
     })
+    const locale = computed(() => {
+      const message = messages.value[store.language]
+      return {
+        days: message.date.days,
+        daysShort: message.date.daysShort,
+        months: message.date.months,
+        monthsShort: message.date.monthsShort,
+        firstDayOfWeek: message.date.firstDayOfWeek,
+      }
+    })
+    const dateTitle = computed(() => {
+      return !observeValue.value ? ' ' : ''
+    })
+    const dateSubtitle = computed(() => {
+      return !observeValue.value ? ' ' : ''
+    })
 
     // methods
     const showPopup = (isShow) => {
@@ -153,7 +182,7 @@ export default defineComponent({
       evt?.relatedTarget.parentElement.className.includes('q-date__arrow') ||
       evt?.relatedTarget.className.includes('q-btn--no-uppercase') ||
       evt?.relatedTarget.className.includes('q-btn--round') ||
-      evt?.relatedTarget.className.includes('q-btn-item')
+      evt?.relatedTarget.className.includes('q-btn--dense')
       ) {
         inputDateRange.value.focus()
       } else {
@@ -171,6 +200,9 @@ export default defineComponent({
       observeValue,
       dateRangeValue,
       pickerOptions,
+      locale,
+      dateTitle,
+      dateSubtitle,
       focus,
       blur,
       clearFn,

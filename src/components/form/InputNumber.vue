@@ -51,19 +51,19 @@ export default defineComponent({
     label: { type: String },
     modelValue: { type: [String, Number], default: 0 },
     rules: { type: Array, default () { return [] } },
+    required: { type: Boolean, default: true },
   },
   emits: [
     'update:modelValue',
   ],
   setup (props, { emit }) {
     // data
-    const { label, rules } = toRefs(props)
+    const { label, rules, required } = toRefs(props)
 
     // computed
     const ruleList = computed(() => {
-      const rule = [
-        vuelidate.required(`${label.value}必填`),
-      ]
+      const rule = []
+      required.value && rule.push(vuelidate.required(`${label.value}必填`))
       return rule.concat(rules.value)
     })
 
