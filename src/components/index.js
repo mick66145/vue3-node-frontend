@@ -17,10 +17,13 @@ import InputNumber from './form/InputNumber.vue'
 import InputMonth from './form/InputMonth/InputMonth.vue'
 import InputEmail from './form/InputEmail.vue'
 import BaseButton from './button/BaseButton.vue'
+import BaseIconButton from './button/BaseIconButton.vue'
 import BaseImage from './image/BaseImage.vue'
 import BaseDialog from './dialog/BaseDialog.vue'
 import ImagePreviewDialog from './dialog/ImagePreviewDialog.vue'
 import MessageDialog from './dialog/MessageDialog.vue'
+import SkeletonTable from './skeleton/SkeletonTable.vue'
+import BaseTooltip from './tooltip/BaseTooltip.vue'
 import Pagination from './Pagination.vue'
 import Calendar from './Calendar.vue'
 export default {
@@ -44,10 +47,13 @@ export default {
     app.component('InputMonth', InputMonth)
     app.component('InputEmail', InputEmail)
     app.component('BaseButton', BaseButton)
+    app.component('BaseIconButton', BaseIconButton)
     app.component('BaseImage', BaseImage)
     app.component('BaseDialog', BaseDialog)
     app.component('ImagePreviewDialog', ImagePreviewDialog)
     app.component('MessageDialog', MessageDialog)
+    app.component('SkeletonTable', SkeletonTable)
+    app.component('BaseTooltip', BaseTooltip)
     app.component('Pagination', Pagination)
     app.component('Calendar', Calendar)
   },
