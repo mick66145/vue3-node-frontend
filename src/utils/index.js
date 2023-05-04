@@ -68,6 +68,7 @@ export function formatNumber (input, symbol, index) {
 }
 
 export const getValueByPath = function (object, prop) {
+  if (typeof object !== 'object') return object
   prop = prop || ''
   const paths = prop.split('.')
   let current = object

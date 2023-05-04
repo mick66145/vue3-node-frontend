@@ -1,7 +1,7 @@
 /* eslint-disable node/no-path-concat */
 import { fileURLToPath, URL } from 'url'
 
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -29,37 +29,47 @@ const https = () => {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    vue({
-      template: { transformAssetUrls },
-    }),
-    vueJsx(),
-    WindiCSS(),
-    stylelint(),
-    mkcert(),
-    createSvgIconsPlugin({
-      // Specify the icon folder to be cached
-      iconDirs: [path.resolve(process.cwd(), 'src/icons')],
-      // Specify symbolId format
-      symbolId: 'icon-[name]',
-    }),
-    vueI18n({
-      compositionOnly: false,
-      include: path.resolve(__dirname, 'src/locales/**'),
-    }),
-    quasar({
-      sassVariables: 'src/styles/abstracts/quasar-variables.scss',
-    }),
-  ],
-  server: {
-    https: false,
-    cors: true,
-    port: 3000,
-  },
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+const root = process.cwd()
+export default defineConfig(({ command, mode }) => {
+  let env = {}
+  const isBuild = command === 'build'
+  if (!isBuild) {
+    env = loadEnv((process.argv[3] === '--mode' ? process.argv[4] : process.argv[3]), root)
+  } else {
+    env = loadEnv(mode, root)
+  }
+  return {
+    plugins: [
+      vue({
+        template: { transformAssetUrls },
+      }),
+      vueJsx(),
+      WindiCSS(),
+      stylelint(),
+      mkcert(),
+      createSvgIconsPlugin({
+        // Specify the icon folder to be cached
+        iconDirs: [path.resolve(process.cwd(), 'src/icons')],
+        // Specify symbolId format
+        symbolId: 'icon-[name]',
+      }),
+      vueI18n({
+        compositionOnly: false,
+        include: path.resolve(__dirname, 'src/locales/**'),
+      }),
+      quasar({
+        sassVariables: 'src/styles/abstracts/quasar-variables.scss',
+      }),
+    ],
+    server: {
+      https: false,
+      cors: true,
+      port: 3000,
     },
-  },
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
+    },
+  }
 })
