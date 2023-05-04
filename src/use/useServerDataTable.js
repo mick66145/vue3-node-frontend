@@ -49,6 +49,14 @@ export default function useServerDataTable ({
     }
   }
 
+  const onChangePageSize = (pageSize) => {
+    search.page_size = pageSize
+    setSessionStorage(sessionStorageKey, { search })
+    if (callback && typeof (callback) === 'function') {
+      callback()
+    }
+  }
+
   const onChangeFilter = () => {
     search.page = 1
     setSessionStorage(sessionStorageKey, { search })
@@ -62,6 +70,7 @@ export default function useServerDataTable ({
       search[key] = value
     }
     search.page = 1
+    search.page_size = 10
     setSessionStorage(sessionStorageKey, { search })
     if (callback && typeof (callback) === 'function') {
       callback()
@@ -73,6 +82,7 @@ export default function useServerDataTable ({
     data,
     total,
     onChangePage,
+    onChangePageSize,
     onChangeFilter,
     onReset,
   }
