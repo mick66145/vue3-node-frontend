@@ -1,2 +1,12 @@
 {
+  "g": {
+    "dialog": {
+      "default-title": "標題"
+    },
+    "btn": {
+      "confirm": "確認",
+      "cancel": "取消",
+      "delete": "刪除"
+    }
+  }
 }

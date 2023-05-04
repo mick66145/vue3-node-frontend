@@ -1,3 +1,13 @@
 {
-    "語系": "language"
+  "語系": "language",
+  "g": {
+    "dialog": {
+      "default-title": "title"
+    },
+    "btn": {
+      "confirm": "confirm",
+      "cancel": "cancel",
+      "delete": "delete"
+    }
+  }
 }
