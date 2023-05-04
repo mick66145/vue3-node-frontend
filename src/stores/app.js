@@ -6,6 +6,8 @@ export const useApp = defineStore({
   id: 'app',
   state: () => ({
     language: getLanguage(),
+    isLoading: false,
+    isReading: false,
   }),
   actions: {
     setLanguage (language) {
