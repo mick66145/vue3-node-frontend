@@ -1,6 +1,7 @@
 // https://github.com/cuatromedios/quasar-app-extension-vuelidate-rules
 
 import * as methods from '@vuelidate/validators'
+import dayjs from 'dayjs'
 
 export const vuelidate = {
   is (value, message) {
@@ -93,6 +94,18 @@ export const vuelidate = {
   },
   regex (regex, message = false) {
     return (val) => regex.test(val) || message
+  },
+  dayjIsBefore (locator, message = false, format = 'YYYY-MM-DD') {
+    return (val) => dayjs(val, format).isBefore(dayjs(locator, format)) || message
+  },
+  dayjIsSameOrBefore (locator, message = false, format = 'YYYY-MM-DD') {
+    return (val) => dayjs(val, format).isSameOrBefore(dayjs(locator, format)) || message
+  },
+  dayjIsAfter (locator, message = false, format = 'YYYY-MM-DD') {
+    return (val) => dayjs(val, format).isAfter(dayjs(locator, format)) || message
+  },
+  dayjIsSameOrAfter (locator, message = false, format = 'YYYY-MM-DD') {
+    return (val) => dayjs(val, format).isSameOrAfter(dayjs(locator, format)) || message
   },
 }
 
