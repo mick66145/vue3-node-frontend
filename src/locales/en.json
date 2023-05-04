@@ -2,6 +2,14 @@
   "g": {
     "system": {
       "system-name": "ClientFrontend Base"
+    },
+    "dialog": {
+      "default-title": "title"
+    },
+    "btn": {
+      "confirm": "confirm",
+      "cancel": "cancel",
+      "delete": "delete"
     }
   }
 }
