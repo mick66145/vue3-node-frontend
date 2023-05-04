@@ -25,7 +25,7 @@ import MessageDialog from './dialog/MessageDialog.vue'
 import SkeletonTable from './skeleton/SkeletonTable.vue'
 import BaseTooltip from './tooltip/BaseTooltip.vue'
 import Pagination from './Pagination.vue'
-import Calendar from './Calendar.vue'
+import Calendar from './calendar/Calendar.vue'
 export default {
   install (app) {
     app.component('SvgIcon', SvgIcon)
