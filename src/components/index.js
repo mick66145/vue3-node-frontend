@@ -23,6 +23,8 @@ import BaseDialog from './dialog/BaseDialog.vue'
 import ImagePreviewDialog from './dialog/ImagePreviewDialog.vue'
 import MessageDialog from './dialog/MessageDialog.vue'
 import SkeletonTable from './skeleton/SkeletonTable.vue'
+import ImageUploader from './uploader/ImageUploader.vue'
+import FileUploader from './uploader/FileUploader.vue'
 import BaseTooltip from './tooltip/BaseTooltip.vue'
 import Pagination from './Pagination.vue'
 import Calendar from './calendar/Calendar.vue'
@@ -53,6 +55,8 @@ export default {
     app.component('ImagePreviewDialog', ImagePreviewDialog)
     app.component('MessageDialog', MessageDialog)
     app.component('SkeletonTable', SkeletonTable)
+    app.component('ImageUploader', ImageUploader)
+    app.component('FileUploader', FileUploader)
     app.component('BaseTooltip', BaseTooltip)
     app.component('Pagination', Pagination)
     app.component('Calendar', Calendar)
