@@ -1,6 +1,6 @@
 import $dayjs from '@/plugins/dayjs'
 
-export const convertDateTime = (v, format = 'YYYY-MM-DD') => {
+export const convertDateTime = (v, format = 'YYYY/MM/DD') => {
   return $dayjs(v).format(format)
 }
 
@@ -15,4 +15,21 @@ export const convertMoney = (number, places, symbol, thousand, decimal) => {
   let j = ''
   j = (j = i.length) > 3 ? j % 3 : 0
   return symbol + negative + (j ? i.substr(0, j) + thousand : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : '')
+}
+
+export function convertTrueFalseString (word) {
+  if (typeof word === 'string') {
+    switch (word.toLowerCase().trim()) {
+    case 'yes': case 'true': case '1': return true
+    case 'no': case 'false': case '0': case null : return false
+    default: return Boolean(word)
+    }
+  } else if (typeof word === 'number') {
+    switch (word) {
+    case 1: return true
+    case 0: return false
+    }
+  } else {
+    return word
+  }
 }
