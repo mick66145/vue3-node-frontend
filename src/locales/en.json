@@ -1,13 +1,23 @@
 {
-  "語系": "language",
   "g": {
+    "system": {
+      "system-name": "ClientFrontend Base"
+    },
     "dialog": {
-      "default-title": "title"
+      "default-title": "Title"
     },
     "btn": {
-      "confirm": "confirm",
-      "cancel": "cancel",
-      "delete": "delete"
+      "edit": "Edit",
+      "add": "Add",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "save": "Save",
+      "confirm": "Confirm",
+      "go-back": "GoBack",
+      "reset-password": "ResetPassword",
+      "reset": "Reset",
+      "view": "View",
+      "dowload": "Dowload"
     }
   }
 }
