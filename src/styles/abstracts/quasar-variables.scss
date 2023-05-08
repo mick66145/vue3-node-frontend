@@ -12,33 +12,36 @@ $space-sm: (x: ($space-x-base * 0.5), y: ($space-y-base * 0.5)) ;
 $space-md: (x: $space-x-base, y: $space-y-base) ;
 $space-lg: (x: ($space-x-base * 1.5), y: ($space-y-base * 1.5)) ;
 $space-xl: (x: ($space-x-base * 3), y: ($space-y-base * 3)) ;
+$space-xxl: (x: ($space-x-base * 6), y: ($space-y-base * 6)) ;
 
 // sorry for long line; we need .sass and it doesn't support multi-line list
-$spaces: ("none": $space-none, "xs": $space-xs, "sm": $space-sm, "md": $space-md, "lg": $space-lg, "xl": $space-xl) ;
+$spaces: ("none": $space-none, "xs": $space-xs, "sm": $space-sm, "md": $space-md, "lg": $space-lg, "xl": $space-xl, "xxl": $space-xxl) ;
 $animate-duration: 0.3s ;
 $animate-delay: 0.3s ;
 $animate-repeat: 1 ;
 
 // Max width at which point
 // current size ends
-$breakpoint-xs: 767px ;
-$breakpoint-sm: 991px ;
-$breakpoint-md: 1199px ;
-$breakpoint-lg: 1439px ;
+$breakpoint-xs: 575px ;
+$breakpoint-sm: 767px ;
+$breakpoint-md: 991px ;
+$breakpoint-lg: 1199px ;
+$breakpoint-xl: 1399px ;
 $flex-cols: 12 ;
 $flex-gutter-xs: ($space-base * 0.25) ;
 $flex-gutter-sm: ($space-base * 0.5) ;
 $flex-gutter-md: $space-base ;
 $flex-gutter-lg: ($space-base * 1.5) ;
 $flex-gutter-xl: ($space-base * 3) ;
+$flex-gutter-xxl: ($space-base * 6) ;
 $body-font-size: 14px ;
 $body-line-height: 1.5 ;
 
 // sorry for long line; we need .sass and it doesn't support multi-line list
-$flex-gutter: ("none": 0, "xs": $flex-gutter-xs, "sm": $flex-gutter-sm, "md": $flex-gutter-md, "lg": $flex-gutter-lg, "xl": $flex-gutter-xl) ;
+$flex-gutter: ("none": 0, "xs": $flex-gutter-xs, "sm": $flex-gutter-sm, "md": $flex-gutter-md, "lg": $flex-gutter-lg, "xl": $flex-gutter-xl, "xxl": $flex-gutter-xxl) ;
 
 // sorry for long line; we need .sass and it doesn't support multi-line list
-$sizes: ("xs": 575, "sm": ($breakpoint-xs + 1), "md": ($breakpoint-sm + 1), "lg": ($breakpoint-md + 1), "xl": ($breakpoint-lg + 1)) ;
+$sizes: ("xs": 0, "sm": ($breakpoint-xs + 1), "md": ($breakpoint-sm + 1), "lg": ($breakpoint-md + 1), "xl": ($breakpoint-lg + 1),"xxl": ($breakpoint-xl + 1)) ;
 $breakpoint-xs-max: (map-get($sizes, "sm") - 0.02) ;
 $breakpoint-sm-min: map-get($sizes, "sm") ;
 $breakpoint-sm-max: (map-get($sizes, "md") - 0.02) ;
@@ -47,6 +50,8 @@ $breakpoint-md-max: (map-get($sizes, "lg") - 0.02) ;
 $breakpoint-lg-min: map-get($sizes, "lg") ;
 $breakpoint-lg-max: (map-get($sizes, "xl") - 0.02) ;
 $breakpoint-xl-min: map-get($sizes, "xl") ;
+$breakpoint-xl-max: (map-get($sizes, "xxl") - 0.02) ;
+$breakpoint-xxl-min: map-get($sizes, "xxl") ;
 $h1: (size: 6rem,     line-height: 6rem,     letter-spacing: -0.01562em, weight: 300) ;
 $h2: (size: 3.75rem,  line-height: 3.75rem,  letter-spacing: -0.00833em, weight: 300) ;
 $h3: (size: 3rem,     line-height: 3.125rem, letter-spacing: normal,    weight: 400) ;
