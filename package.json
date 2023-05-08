@@ -22,7 +22,14 @@
     "cert": "mkcert -key-file localhost-key.pem -cert-file localhost.pem localhost $(ipconfig getifaddr en0)",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "lint:rule": "eslint --print-config path::String",
-    "release": "standard-version -t ''"
+    "lint:eslint": "eslint --fix --ext .js,.ts,.vue ./src",
+    "lint:format": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,vue,html,md}\"",
+    "lint:style": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
+    "release": "standard-version -t ''",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@quasar/extras": "^1.15.5",
@@ -47,6 +54,8 @@
     "quill-delta-to-html": "^0.12.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
     "@intlify/vite-plugin-vue-i18n": "^3.4.0",
     "@quasar/vite-plugin": "^1.2.3",
     "@sientech/eslint-config-frontend": "^2.0.0",
@@ -61,11 +70,14 @@
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard-scss": "^5.0.0",
-    "vite": "^3.0.9",
+    "vite": "^3.2.5",
     "vite-plugin-mkcert": "^1.10.1",
     "vite-plugin-stylelint": "^3.0.7",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-windicss": "^1.8.4",
-    "windicss": "^3.5.4"
+    "vitest": "^0.25.1",
+    "windicss": "^3.5.4",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.1"
   }
 }
