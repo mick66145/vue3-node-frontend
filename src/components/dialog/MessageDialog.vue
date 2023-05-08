@@ -11,15 +11,13 @@
       </q-card-section>
 
       <q-card-actions class="q-dialog-footer" align="right">
-        <q-btn
+        <base-flat-button
           v-if="showCancel"
-          flat
           :color="cancelButtonColor"
           :label="cancelButtonText"
           @click="onCancel"
         />
-        <q-btn
-          flat
+        <base-flat-button
           :color="confirmButtonColor"
           :label="confirmButtonText"
           @click="onConfirm"

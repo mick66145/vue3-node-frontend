@@ -17,7 +17,10 @@ import InputNumber from './form/InputNumber.vue'
 import InputMonth from './form/InputMonth/InputMonth.vue'
 import InputEmail from './form/InputEmail.vue'
 import BaseButton from './button/BaseButton.vue'
+import ConfirmButton from './button/ConfirmButton.vue'
+import CancelButton from './button/CancelButton.vue'
 import BaseIconButton from './button/BaseIconButton.vue'
+import BaseFlatButton from './button/BaseFlatButton.vue'
 import BaseImage from './image/BaseImage.vue'
 import BaseDialog from './dialog/BaseDialog.vue'
 import ImagePreviewDialog from './dialog/ImagePreviewDialog.vue'
@@ -49,7 +52,10 @@ export default {
     app.component('InputMonth', InputMonth)
     app.component('InputEmail', InputEmail)
     app.component('BaseButton', BaseButton)
+    app.component('ConfirmButton', ConfirmButton)
+    app.component('CancelButton', CancelButton)
     app.component('BaseIconButton', BaseIconButton)
+    app.component('BaseFlatButton', BaseFlatButton)
     app.component('BaseImage', BaseImage)
     app.component('BaseDialog', BaseDialog)
     app.component('ImagePreviewDialog', ImagePreviewDialog)

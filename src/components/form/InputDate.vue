@@ -42,7 +42,7 @@
 <script>
 import { useVModel } from '@vueuse/core'
 import { defineComponent, ref, computed } from 'vue-demi'
-import { useI18n } from 'vue-i18n'
+import { i18n } from '@/plugins/i18n'
 import { useApp } from '@/stores/app'
 export default defineComponent({
   props: {
@@ -54,7 +54,6 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup (props, { emit }) {
     // data
-    const { messages } = useI18n()
     const store = useApp()
     const inputData = ref()
     const show = ref(false)
@@ -62,7 +61,7 @@ export default defineComponent({
 
     // computed
     const locale = computed(() => {
-      const message = messages.value[store.language]
+      const message = i18n.global.messages[store.language]
       return {
         days: message.date.days,
         daysShort: message.date.daysShort,

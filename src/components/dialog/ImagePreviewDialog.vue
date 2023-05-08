@@ -4,7 +4,7 @@
     title="預覽圖片"
     :show-save="false"
   >
-    <img class="w-full" :src="preview(data)">
+    <base-image class="w-full" :src="preview(data)" :preview="false" />
   </base-dialog>
 </template>
 
