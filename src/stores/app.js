@@ -5,6 +5,10 @@ import { defineStore } from 'pinia'
 export const useApp = defineStore({
   id: 'app',
   state: () => ({
+    sidebar: {
+      opened: false,
+      withoutAnimation: false,
+    },
     language: getLanguage(),
     isLoading: false,
     isReading: false,
@@ -13,6 +17,15 @@ export const useApp = defineStore({
     setLanguage (language) {
       this.language = language
       Cookies.set('language', language)
+    },
+    toggleSideBar () {
+      this.sidebar.opened = !this.sidebar.opened
+      this.sidebar.withoutAnimation = false
+      if (this.sidebar.opened) {
+        Cookies.set('sidebarStatus', 1)
+      } else {
+        Cookies.set('sidebarStatus', 0)
+      }
     },
   },
 
