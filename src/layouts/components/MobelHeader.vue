@@ -1,17 +1,22 @@
 <template>
   <q-header class="flex-center row text-blue-grey-7 fixed-top">
-    <q-toolbar class="bg-primary text-white max-w-480px shadow-7">
+    <q-toolbar class="bg-primary flex-center text-white max-w-480px row shadow-7">
+      <q-avatar class="left-3 absolute">
+        <base-image
+          width="30px"
+          heigth="30px"
+          src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg"
+        />
+      </q-avatar>
+      <q-btn flat no-caps no-wrap to="/">
+        <q-toolbar-title shrink> {{ $t('g.system.system-name') }}</q-toolbar-title>
+      </q-btn>
       <base-icon-button
+        class="right-3 absolute "
         icon="menu"
         color="white"
         @click="onToggle"
       />
-      <q-btn flat no-caps no-wrap class="q-ml-xs" to="/">
-        <q-toolbar-title shrink>
-          <span class="<sm:text-base">{{ $t('g.system.system-name') }}</span>
-        </q-toolbar-title>
-      </q-btn>
-      <q-space />
     </q-toolbar>
   </q-header>
 </template>
