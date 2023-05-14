@@ -1,14 +1,14 @@
 import { reactive } from 'vue-demi'
-import clonedeep from 'lodash/clonedeep'
+import cloneDeep from 'lodash/cloneDeep'
 
 export default function useQuickState (params = {}) {
   const state = reactive({ ...params })
-  const backupState = clonedeep(state)
+  const backupState = cloneDeep(state)
   const reset = () => {
     Object.assign(state, cloneBackup())
   }
-  const clone = () => clonedeep(state)
-  const cloneBackup = () => clonedeep(backupState)
+  const clone = () => cloneDeep(state)
+  const cloneBackup = () => cloneDeep(backupState)
   return {
     state,
     backupState,
