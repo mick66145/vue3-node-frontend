@@ -22,6 +22,7 @@ import CancelButton from './button/CancelButton.vue'
 import BaseIconButton from './button/BaseIconButton.vue'
 import BaseFlatButton from './button/BaseFlatButton.vue'
 import BaseImage from './image/BaseImage.vue'
+import BaseLink from './link/BaseLink.vue'
 import BaseDialog from './dialog/BaseDialog.vue'
 import ImagePreviewDialog from './dialog/ImagePreviewDialog.vue'
 import MessageDialog from './dialog/MessageDialog.vue'
@@ -58,6 +59,7 @@ export default {
     app.component('BaseIconButton', BaseIconButton)
     app.component('BaseFlatButton', BaseFlatButton)
     app.component('BaseImage', BaseImage)
+    app.component('BaseLink', BaseLink)
     app.component('BaseDialog', BaseDialog)
     app.component('ImagePreviewDialog', ImagePreviewDialog)
     app.component('MessageDialog', MessageDialog)
