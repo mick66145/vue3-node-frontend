@@ -45,6 +45,7 @@
     "dayjs": "^1.11.2",
     "js-cookie": "2.2.0",
     "lodash-es": "^4.17.21",
+    "path-browserify": "^1.0.1",
     "pinia": "^2.0.13",
     "qs": "^6.11.0",
     "quasar": "^2.10.0",
