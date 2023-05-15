@@ -1,5 +1,9 @@
 <template>
-  <q-checkbox v-model="observeValue" />
+  <q-checkbox v-model="observeValue">
+    <template v-if="$slots.default" #default>
+      <slot name="default" />
+    </template>
+  </q-checkbox>
 </template>
 
 <script>
