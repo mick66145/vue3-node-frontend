@@ -86,6 +86,7 @@ export default defineComponent({
 
     const focus = () => {
       showPopup(true)
+      document.activeElement.blur()
     }
 
     const blur = (evt) => {

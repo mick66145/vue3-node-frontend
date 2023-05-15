@@ -173,6 +173,7 @@ export default defineComponent({
     }
     const focus = () => {
       showPopup(true)
+      document.activeElement.blur()
     }
     const blur = (evt) => {
       // 判斷除了close按鈕和日期按鈕以外的按鈕繼續focus
