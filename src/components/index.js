@@ -1,4 +1,6 @@
 import SvgIcon from './SvgIcon.vue'
+import CardHeader from './card/CardHeader.vue'
+import CardBody from './card/CardBody.vue'
 import InputText from './form/InputText.vue'
 import InputSelect from './form/InputSelect.vue'
 import InputMultipleSelect from './form/InputMultipleSelect.vue'
@@ -36,6 +38,8 @@ import Calendar from './calendar/Calendar.vue'
 export default {
   install (app) {
     app.component('SvgIcon', SvgIcon)
+    app.component('CardHeader', CardHeader)
+    app.component('CardBody', CardBody)
     app.component('InputText', InputText)
     app.component('InputSelect', InputSelect)
     app.component('InputMultipleSelect', InputMultipleSelect)
