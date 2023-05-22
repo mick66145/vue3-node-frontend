@@ -19,6 +19,11 @@ import InputNumber from './form/InputNumber.vue'
 import InputMonth from './form/InputMonth/InputMonth.vue'
 import InputEmail from './form/InputEmail.vue'
 import BaseButton from './button/BaseButton.vue'
+import AddButton from './button/AddButton.vue'
+import DeleteButton from './button/DeleteButton.vue'
+import EditButton from './button/EditButton.vue'
+import ResetButton from './button/ResetButton.vue'
+import ViewButton from './button/ViewButton.vue'
 import ConfirmButton from './button/ConfirmButton.vue'
 import CancelButton from './button/CancelButton.vue'
 import BaseIconButton from './button/BaseIconButton.vue'
@@ -60,6 +65,10 @@ export default {
     app.component('InputMonth', InputMonth)
     app.component('InputEmail', InputEmail)
     app.component('BaseButton', BaseButton)
+    app.component('AddButton', AddButton)
+    app.component('DeleteButton', DeleteButton)
+    app.component('EditButton', EditButton)
+    app.component('ViewButton', ViewButton)
     app.component('ConfirmButton', ConfirmButton)
     app.component('CancelButton', CancelButton)
     app.component('BaseIconButton', BaseIconButton)
