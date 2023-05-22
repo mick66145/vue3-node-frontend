@@ -1,11 +1,19 @@
-<script setup>
-import { RouterView } from 'vue-router'
-</script>
-
 <template>
-  <RouterView />
+  <router-view />
 </template>
 
-<style>
+<script>
+import { defineComponent } from 'vue-demi'
+import { RouterView } from 'vue-router'
 
+export default defineComponent({
+  setup () {
+    return {
+      RouterView,
+    }
+  },
+})
+</script>
+
+<style lang="scss" scoped>
 </style>
