@@ -28,6 +28,7 @@ import BaseLink from './link/BaseLink.vue'
 import BaseDialog from './dialog/BaseDialog.vue'
 import ImagePreviewDialog from './dialog/ImagePreviewDialog.vue'
 import MessageDialog from './dialog/MessageDialog.vue'
+import MessageCenterDialog from './dialog/MessageCenterDialog.vue'
 import SkeletonTable from './skeleton/SkeletonTable.vue'
 import ImageUploader from './uploader/ImageUploader.vue'
 import FileUploader from './uploader/FileUploader.vue'
@@ -68,6 +69,7 @@ export default {
     app.component('BaseDialog', BaseDialog)
     app.component('ImagePreviewDialog', ImagePreviewDialog)
     app.component('MessageDialog', MessageDialog)
+    app.component('MessageCenterDialog', MessageCenterDialog)
     app.component('SkeletonTable', SkeletonTable)
     app.component('ImageUploader', ImageUploader)
     app.component('FileUploader', FileUploader)
