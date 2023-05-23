@@ -25,6 +25,7 @@ import EditButton from './button/EditButton.vue'
 import ViewButton from './button/ViewButton.vue'
 import ConfirmButton from './button/ConfirmButton.vue'
 import CancelButton from './button/CancelButton.vue'
+import LineButton from './button/LineButton.vue'
 import BaseIconButton from './button/BaseIconButton.vue'
 import BaseFlatButton from './button/BaseFlatButton.vue'
 import BaseImage from './image/BaseImage.vue'
@@ -70,6 +71,7 @@ export default {
     app.component('ViewButton', ViewButton)
     app.component('ConfirmButton', ConfirmButton)
     app.component('CancelButton', CancelButton)
+    app.component('LineButton', LineButton)
     app.component('BaseIconButton', BaseIconButton)
     app.component('BaseFlatButton', BaseFlatButton)
     app.component('BaseImage', BaseImage)
