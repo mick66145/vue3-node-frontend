@@ -17,7 +17,8 @@
       "reset-password": "ResetPassword",
       "reset": "Reset",
       "view": "View",
-      "dowload": "Dowload"
+      "dowload": "Dowload",
+      "line": "LineLogIn"
     }
   }
 }
