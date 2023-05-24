@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue-demi'
-import axios from 'axios'
+import request from '@/utils/request'
 
 export default function useLine ({
   channelId,
@@ -24,13 +24,18 @@ export default function useLine ({
     const code = urlParams.value.get('code')
     if (code) {
       try {
-        const response = await axios.post('https://api.line.me/oauth2/v2.1/token', new URLSearchParams({
-          grant_type: 'authorization_code',
-          code: code,
-          client_id: channelId,
-          client_secret: channelSecret,
-          redirect_uri: redirectUri,
-        }), { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+        const response = await request({
+          url: 'https://api.line.me/oauth2/v2.1/token',
+          method: 'post',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          data: {
+            grant_type: 'authorization_code',
+            code: code,
+            client_id: channelId,
+            client_secret: channelSecret,
+            redirect_uri: redirectUri,
+          },
+        })
         const { access_token: accessToken, id_token: idToken } = response.data
         return { accessToken, idToken }
       } catch (error) {}
