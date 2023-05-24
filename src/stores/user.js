@@ -1,11 +1,19 @@
 import { AuthResource, MeResource } from '@/api'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import {
+  getToken,
+  setToken,
+  removeToken,
+  getLineAccessToken,
+  setLineAccessToken,
+  removeLineAccessToken,
+} from '@/utils/auth'
 import { defineStore } from 'pinia'
 
 export const useUser = defineStore({
   id: 'user',
   state: () => ({
     token: getToken(),
+    lineAccessToken: getLineAccessToken(),
     info: '',
     permissionList: [],
     authResource: new AuthResource(),
@@ -113,9 +121,16 @@ export const useUser = defineStore({
       this.token = token
     },
 
+    setLineAccessToken (token) {
+      setLineAccessToken(token)
+      this.lineAccessToken = token
+    },
+
     clear () {
       this.token = ''
+      this.lineAccessToken = ''
       removeToken()
+      removeLineAccessToken()
       this.$reset()
     },
   },
