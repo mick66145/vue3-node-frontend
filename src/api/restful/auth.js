@@ -44,6 +44,14 @@ class AuthResource extends Resource {
       method: 'post',
     })
   }
+
+  async bind (params) {
+    return await request({
+      url: `/${this.uri}/bind`,
+      method: 'post',
+      data: params,
+    }).then(res => res.data)
+  }
 }
 
 export default AuthResource
