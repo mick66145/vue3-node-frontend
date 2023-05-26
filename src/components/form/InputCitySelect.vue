@@ -35,6 +35,9 @@ export default defineComponent({
         cityList.value = res.list
       })
     }
+    const clearData = async () => {
+      cityList.value = []
+    }
 
     // use
     const { callReadListFetch } = useCRUD({
@@ -44,6 +47,8 @@ export default defineComponent({
     return {
       observeValue,
       cityList,
+      fetchData,
+      clearData,
     }
   },
 })

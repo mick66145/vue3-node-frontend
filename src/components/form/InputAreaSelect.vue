@@ -8,7 +8,7 @@
 <script>
 import { AreaResource } from '@/api'
 import { useVModel } from '@vueuse/core'
-import { defineComponent, ref, onMounted, toRefs } from 'vue-demi'
+import { defineComponent, ref, onMounted, toRefs, watch } from 'vue-demi'
 import useCRUD from '@/use/useCRUD'
 
 const areaResource = new AreaResource()
@@ -27,7 +27,9 @@ export default defineComponent({
 
     // mounted
     onMounted(async () => {
-      await callReadListFetch()
+      if (cityId.value) {
+        await callReadListFetch()
+      }
     })
 
     // methods
@@ -38,15 +40,25 @@ export default defineComponent({
         areaList.value = res.list
       })
     }
+    const clearData = async () => {
+      areaList.value = []
+    }
 
     // use
     const { callReadListFetch } = useCRUD({
       readListFetch: fetchData,
     })
 
+    // watch
+    watch(() => cityId.value, (newValue) => {
+      if (newValue)fetchData()
+    })
+
     return {
       observeValue,
       areaList,
+      fetchData,
+      clearData,
     }
   },
 })
