@@ -19,6 +19,8 @@ import { useDayjs } from '@/plugins/dayjs'
 import i18n from '@/plugins/i18n'
 import { useVuelidate } from '@/plugins/vuelidate'
 
+import './permission'
+
 const app = createApp(App)
 app.use(quasar)
 app.use(createPinia())
