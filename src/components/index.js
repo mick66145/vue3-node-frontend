@@ -18,6 +18,8 @@ import InputTime from './form/InputTime.vue'
 import InputNumber from './form/InputNumber.vue'
 import InputMonth from './form/InputMonth/InputMonth.vue'
 import InputEmail from './form/InputEmail.vue'
+import InputCitySelect from './form/InputCitySelect.vue'
+import InputAreaSelect from './form/InputAreaSelect.vue'
 import BaseButton from './button/BaseButton.vue'
 import AddButton from './button/AddButton.vue'
 import DeleteButton from './button/DeleteButton.vue'
@@ -64,6 +66,8 @@ export default {
     app.component('InputNumber', InputNumber)
     app.component('InputMonth', InputMonth)
     app.component('InputEmail', InputEmail)
+    app.component('InputCitySelect', InputCitySelect)
+    app.component('InputAreaSelect', InputAreaSelect)
     app.component('BaseButton', BaseButton)
     app.component('AddButton', AddButton)
     app.component('DeleteButton', DeleteButton)
