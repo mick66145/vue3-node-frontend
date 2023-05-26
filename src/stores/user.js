@@ -19,6 +19,9 @@ export const useUser = defineStore({
     authResource: new AuthResource(),
     meResource: new MeResource(),
   }),
+  getters: {
+    isLogin: state => !!state.token,
+  },
   actions: {
 
     login (payload) {
