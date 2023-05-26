@@ -35,6 +35,15 @@ router.beforeEach(async (to, from, next) => {
   }
 })
 
+router.beforeEach(async (to, from, next) => {
+  const store = useUser()
+  const path = ['/login', '/register']
+  if (path.includes(to.path) && store.isLogin) {
+    next('/')
+  }
+  next()
+})
+
 router.afterEach((to) => {
   document.title = getPageTitle(to.meta.title ? i18n.global.t(to.meta.title || 'g.system-system-name', to.params.lang) : '')
   NProgress.done()
