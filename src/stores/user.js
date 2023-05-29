@@ -90,7 +90,8 @@ export const useUser = defineStore({
       //     })
       // })
       return new Promise((resolve) => {
-        resolve({})
+        this.info = { }
+        resolve(true)
       })
     },
 
