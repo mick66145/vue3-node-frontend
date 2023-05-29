@@ -62,9 +62,7 @@ export default defineComponent({
       case 'city':
         observeValue.value.area = null
         observeValue.value.post_code = null
-        if (observeValue.value.city) {
-          inputArea.value.fetchData()
-        } else {
+        if (!observeValue.value.city) {
           inputArea.value.clearData()
         }
         break
