@@ -1,5 +1,6 @@
 import Resource from './resource'
 import request from '@/utils/request'
+import { Me } from '@/class'
 
 class MeResource extends Resource {
   constructor () {
@@ -11,6 +12,12 @@ class MeResource extends Resource {
       url: `/${this.uri}`,
       method: 'get',
     }).then(res => res.data)
+      .then(res => {
+        const meObj = new Me({
+          ...res.data,
+        })
+        return meObj
+      })
   }
 
   async profile (params) {
@@ -18,7 +25,7 @@ class MeResource extends Resource {
       url: `/${this.uri}`,
       method: 'patch',
       data: params,
-    })
+    }).then(res => res.data)
   }
 
   async permission () {
@@ -48,7 +55,7 @@ class MeResource extends Resource {
       url: `/${this.uri}/change_password`,
       method: 'post',
       data: params,
-    })
+    }).then(res => res.data)
   }
 }
 
