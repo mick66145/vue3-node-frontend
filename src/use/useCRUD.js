@@ -60,17 +60,20 @@ export default function useCRUD ({
     }
   }
 
-  const callReadFetch = async (id, payload = null) => {
+  const callReadFetch = async (id = null, payload = null) => {
     storeApp.isLoading = true
+    storeApp.isReading = true
     console.log('🚀 ~ callReadFetch ~ payload', id, payload)
     const res = await reqRead.execute(0, id, payload)
     if (reqRead.error.value) {
       storeApp.isLoading = false
+      storeApp.isReading = false
       const message = reqRead.error.value.response.data.message || reqRead.error.value
       isShowReadFail && notifyAPIError({ message })
       return [null, reqRead.error.value]
     } else {
       storeApp.isLoading = false
+      storeApp.isReading = false
       return [res, null]
     }
   }
@@ -123,10 +126,11 @@ export default function useCRUD ({
   }
 
   const isLoading = computed(() => reqCreate.isLoading.value || reqRead.isLoading.value || reqUpdate.isLoading.value || reqDelete.isLoading.value || reqReadList.isLoading.value)
-
+  const isReading = computed(() => reqRead.isLoading.value || reqReadList.isLoading.value)
   return {
     form,
     isLoading,
+    isReading,
     callCreateFetch,
     callReadFetch,
     callUpdateFetch,
