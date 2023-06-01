@@ -47,6 +47,8 @@ import FileUploader from './uploader/FileUploader.vue'
 import BaseTooltip from './tooltip/BaseTooltip.vue'
 import FixedFooter from './FixedFooter.vue'
 import MobelFixedFooter from './MobelFixedFooter.vue'
+import InfiniteScroll from './infinite-scroll/InfiniteScroll.vue'
+import InfiniteScrollReverse from './infinite-scroll/InfiniteScrollReverse.vue'
 import Pagination from './Pagination.vue'
 import Calendar from './calendar/Calendar.vue'
 export default {
@@ -100,6 +102,8 @@ export default {
     app.component('BaseTooltip', BaseTooltip)
     app.component('FixedFooter', FixedFooter)
     app.component('MobelFixedFooter', MobelFixedFooter)
+    app.component('InfiniteScroll', InfiniteScroll)
+    app.component('InfiniteScrollReverse', InfiniteScrollReverse)
     app.component('Pagination', Pagination)
     app.component('Calendar', Calendar)
   },
