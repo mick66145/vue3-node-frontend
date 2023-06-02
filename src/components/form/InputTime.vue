@@ -4,6 +4,7 @@
     v-model="observeValue"
     :label="label"
     :placeholder="placeholder"
+    inputmode="none"
     @focus="focus()"
     @blur="blur"
   >
@@ -58,7 +59,6 @@ export default defineComponent({
 
     const focus = () => {
       showPopup(true)
-      document.activeElement.blur()
     }
 
     const blur = (evt) => {

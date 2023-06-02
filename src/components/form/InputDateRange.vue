@@ -4,6 +4,7 @@
     :label="label"
     :placeholder="placeholder"
     :modelValue="observeValue"
+    inputmode="none"
     @focus="focus()"
     @blur="blur"
     @clear="clearFn"
@@ -173,7 +174,6 @@ export default defineComponent({
     }
     const focus = () => {
       showPopup(true)
-      document.activeElement.blur()
     }
     const blur = (evt) => {
       // 判斷除了close按鈕和日期按鈕以外的按鈕繼續focus
