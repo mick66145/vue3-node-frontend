@@ -4,11 +4,15 @@
     v-model="observeValue"
     :label="label"
     :placeholder="placeholder"
+    inputmode="none"
     @focus="focus()"
     @blur="blur"
   >
     <template #append>
       <q-icon name="event" />
+    </template>
+    <template v-if="$slots.hint" #hint>
+      <slot name="hint" />
     </template>
 
     <template #default>

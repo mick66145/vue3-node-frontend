@@ -11,6 +11,9 @@
     <template #append>
       <q-icon name="event" />
     </template>
+    <template v-if="$slots.hint" #hint>
+      <slot name="hint" />
+    </template>
 
     <template #default>
       <q-popup-proxy
