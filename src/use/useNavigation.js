@@ -18,7 +18,7 @@ export default function useNavigation ({
   const router = useRouter()
 
   const onNavigation = () => {
-    router[replace ? 'push' : 'replace'](to)
+    router[replace ? 'replace' : 'push'](to)
   }
 
   return {
