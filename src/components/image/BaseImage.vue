@@ -1,13 +1,16 @@
 <template>
   <span>
     <q-img
+      v-show="!useSkeleton || (!isReading && useSkeleton)"
       loading="lazy"
       spinner-color="white"
       :src="observeSrc"
       :ratio="ratio"
       :alt="alt"
+      :fit="fit"
       :height="height"
       :width="width"
+      :position="position"
       :class="preview && 'cursor-pointer'"
       @click="onPreview"
     >
@@ -17,6 +20,7 @@
         </div>
       </template>
     </q-img>
+    <skeleton-square v-if="isReading && useSkeleton" />
     <image-preview-dialog ref="dialog" />
   </span>
 </template>
@@ -24,31 +28,44 @@
 <script>
 import { defineComponent, ref } from 'vue-demi'
 import { getToken } from '@/utils/auth'
-import { fetchBlobData } from '@/utils/blob'
+import { fetchBlobData, fetchBlobDataAsDataUrl } from '@/utils/blob'
 import { asyncComputed } from '@vueuse/core'
 export default defineComponent({
   props: {
     src: { type: String },
     ratio: { type: Number, default: 1 },
     alt: { type: String },
+    fit: { type: String, default: 'cover' },
     height: { type: String, default: '100%' },
     width: { type: String, default: '100%' },
+    position: { type: String },
     preview: { type: Boolean, default: true },
     useAuthorization: { type: Boolean, default: false },
+    headers: { type: Object },
+    fileReaderMethod: { type: String, default: 'text' },
+    useSkeleton: { type: Boolean, default: false },
   },
   setup (props) {
     // data
     const dialog = ref()
+    const isReading = ref(false)
+
+    // computed
     const observeSrc = asyncComputed(
       async () => {
         if (props.useAuthorization) {
+          isReading.value = true
           const src = props.src
           const options = {
-            headers: {
-              Authorization: `Bearer ${getToken()}`,
-            },
+            headers: props.headers || { Authorization: `Bearer ${getToken()}` },
           }
-          return await fetchBlobData(src, options)
+          const fetchObj = {
+            text: () => { return fetchBlobData(src, options) },
+            dataUrl: () => { return fetchBlobDataAsDataUrl(src, options) },
+          }
+          const data = await fetchObj[props.fileReaderMethod]()
+          isReading.value = false
+          return data
         } else {
           return props.src
         }
@@ -63,6 +80,7 @@ export default defineComponent({
     }
     return {
       dialog,
+      isReading,
       observeSrc,
       onPreview,
     }
