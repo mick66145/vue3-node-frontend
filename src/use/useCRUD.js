@@ -111,26 +111,28 @@ export default function useCRUD ({
   }
 
   const callReadListFetch = async (id = null, payload = null) => {
-    storeApp.isReading = true
+    storeApp.isReadingList = true
     console.log('🚀 ~ callReadListFetch ~ payload', payload)
     const res = await reqReadList.execute(0, id, payload)
     if (reqReadList.error.value) {
-      storeApp.isReading = false
+      storeApp.isReadingList = false
       const message = reqReadList.error.value.response.data.message || reqReadList.error.value
       isShowReadListFail && notifyAPIError({ message })
       return [null, reqReadList.error.value]
     } else {
-      storeApp.isReading = false
+      storeApp.isReadingList = false
       return [res, null]
     }
   }
 
   const isLoading = computed(() => reqCreate.isLoading.value || reqRead.isLoading.value || reqUpdate.isLoading.value || reqDelete.isLoading.value || reqReadList.isLoading.value)
-  const isReading = computed(() => reqRead.isLoading.value || reqReadList.isLoading.value)
+  const isReading = computed(() => reqRead.isLoading.value)
+  const isReadingList = computed(() => reqReadList.isLoading.value)
   return {
     form,
     isLoading,
     isReading,
+    isReadingList,
     callCreateFetch,
     callReadFetch,
     callUpdateFetch,
