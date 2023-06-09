@@ -16,7 +16,7 @@
         ref="inputArea"
         v-model="observeValue.area"
         class="full-width"
-        :city-id="observeValue.city.id"
+        :city-id="observeValue.city?.id"
         :rules="[required && $rules.required('鄉鎮區必填')]"
         placeholder="請選擇鄉鎮區"
         @update:modelValue="onChange('area')"
