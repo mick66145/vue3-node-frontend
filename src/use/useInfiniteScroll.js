@@ -12,6 +12,7 @@ export default function useInfiniteScroll ({
   const { setSessionStorage, getSessionStorage } = useSessionStorage()
 
   // data
+  const infiniteScroll = ref()
   let sessionStorage = getSessionStorage(sessionStorageKey)
   const search = reactive({})
   const data = ref([])
@@ -21,10 +22,14 @@ export default function useInfiniteScroll ({
   // methods
 
   const onChangePage = () => {
-    search.page = search.page += 1
-    setSessionStorage(sessionStorageKey, { search })
-    if (callback && typeof (callback) === 'function') {
-      callback()
+    if (total.value >= data.value.length) {
+      search.page = search.page += 1
+      setSessionStorage(sessionStorageKey, { search })
+      if (callback && typeof (callback) === 'function') {
+        callback()
+      }
+    } else {
+      infiniteScroll.value.stop()
     }
   }
   const onChangePageSize = (pageSize) => {
@@ -91,6 +96,7 @@ export default function useInfiniteScroll ({
   })
 
   return {
+    infiniteScroll,
     search,
     data,
     total,
