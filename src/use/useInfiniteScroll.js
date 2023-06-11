@@ -28,7 +28,9 @@ export default function useInfiniteScroll ({
     }
   }
   const onChangePageSize = (pageSize) => {
+    search.page = 1
     search.page_size = pageSize
+    data.value = []
     setSessionStorage(sessionStorageKey, { search })
     if (callback && typeof (callback) === 'function') {
       callback()
@@ -36,6 +38,7 @@ export default function useInfiniteScroll ({
   }
   const onChangeFilter = () => {
     search.page = 1
+    data.value = []
     setSessionStorage(sessionStorageKey, { search })
     if (callback && typeof (callback) === 'function') {
       callback()
@@ -48,6 +51,7 @@ export default function useInfiniteScroll ({
     }
     search.page = 1
     search.page_size = 10
+    data.value = []
     setSessionStorage(sessionStorageKey, { search })
     if (callback && typeof (callback) === 'function') {
       await callback()
