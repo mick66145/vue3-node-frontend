@@ -9,6 +9,9 @@ export const useApp = defineStore({
     isLoading: false,
     isReading: false,
     isReadingList: false,
+    isCreate: false,
+    isUpdate: false,
+    isDelete: false,
   }),
   actions: {
     setLanguage (language) {
