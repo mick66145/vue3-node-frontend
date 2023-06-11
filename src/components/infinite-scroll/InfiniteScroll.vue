@@ -1,5 +1,5 @@
 <template>
-  <q-infinite-scroll @load="onLoad">
+  <q-infinite-scroll ref="infiniteScroll" @load="onLoad">
     <slot />
     <template #loading>
       <div class="row justify-center q-my-md">
@@ -10,18 +10,27 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue-demi'
+import { defineComponent, ref } from 'vue-demi'
 
 export default defineComponent({
   props: {
   },
   emits: ['load'],
   setup (props, { emit }) {
+    // data
+    const infiniteScroll = ref()
+
+    // methods
     const onLoad = (index, done) => {
       emit('load', index, done)
     }
+    const stop = () => {
+      infiniteScroll.value.stop()
+    }
     return {
+      infiniteScroll,
       onLoad,
+      stop,
     }
   },
 })
