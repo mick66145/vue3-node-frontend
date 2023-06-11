@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     class="shadow-1"
     :outline="outline"
     :rounded="rounded"

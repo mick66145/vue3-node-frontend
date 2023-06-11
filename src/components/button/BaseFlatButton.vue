@@ -23,13 +23,14 @@ export default defineComponent({
     color: { type: String, default: 'primary' },
     flat: { type: Boolean, default: true },
     size: { type: String, default: 'md' },
+    useLoading: { type: Boolean, default: false },
   },
-  setup () {
+  setup (props) {
     // data
     const storeApp = useApp()
 
     const isLoading = computed(() => {
-      return storeApp.isLoading
+      return props.useLoading && (storeApp.isCreate || storeApp.isUpdate || storeApp.isDelete)
     })
 
     return {
