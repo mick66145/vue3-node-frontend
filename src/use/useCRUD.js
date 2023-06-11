@@ -47,15 +47,18 @@ export default function useCRUD ({
 
   const callCreateFetch = async (id = null, payload) => {
     storeApp.isLoading = true
+    storeApp.isCreate = true
     const res = await reqCreate.execute(0, id, payload)
     if (reqCreate.error.value) {
       storeApp.isLoading = false
+      storeApp.isCreate = false
       const message = reqCreate.error.value.response.data.message || reqCreate.error.value
       isShowCreateFail && notifyAPIError({ message })
       return [null, reqCreate.error.value]
     } else {
       isShowCreateSuccess && notify({ message: createSuccess, type: 'positive' })
       storeApp.isLoading = false
+      storeApp.isCreate = false
       return [res || true, null]
     }
   }
@@ -80,32 +83,38 @@ export default function useCRUD ({
 
   const callUpdateFetch = async (id, payload = null) => {
     storeApp.isLoading = true
+    storeApp.isUpdate = true
     const res = await reqUpdate.execute(0, id, payload)
     console.log('🚀 ~ callUpdateFetch ~ res', res)
     if (reqUpdate.error.value) {
       storeApp.isLoading = false
+      storeApp.isUpdate = false
       const message = reqUpdate.error.value.response.data.message || reqUpdate.error.value
       isShowUpdateFail && notifyAPIError({ message })
       return [null, reqUpdate.error.value]
     } else {
       isShowUpdateSuccess && notify({ message: updateSuccess, type: 'positive' })
       storeApp.isLoading = false
+      storeApp.isUpdate = false
       return [res || true, null]
     }
   }
 
   const callDeleteFetch = async (id) => {
     storeApp.isLoading = true
+    storeApp.isDelete = true
     const res = await reqDelete.execute(0, id)
     console.log('🚀 ~ callDeleteFetch ~ res', res)
     if (reqDelete.error.value) {
       storeApp.isLoading = false
+      storeApp.isDelete = false
       const message = reqDelete.error.value.response.data.message || reqDelete.error.value
       isShowDeleteFail && notifyAPIError({ message })
       return [null, reqDelete.error.value]
     } else {
       isShowDeleteSuccess && notify({ message: deleteSuccess, type: 'positive' })
       storeApp.isLoading = false
+      storeApp.isDelete = false
       return [res || true, null]
     }
   }
@@ -128,11 +137,17 @@ export default function useCRUD ({
   const isLoading = computed(() => reqCreate.isLoading.value || reqRead.isLoading.value || reqUpdate.isLoading.value || reqDelete.isLoading.value || reqReadList.isLoading.value)
   const isReading = computed(() => reqRead.isLoading.value)
   const isReadingList = computed(() => reqReadList.isLoading.value)
+  const isCreate = computed(() => reqCreate.isLoading.value)
+  const isUpdate = computed(() => reqUpdate.isLoading.value)
+  const isDelete = computed(() => reqDelete.isLoading.value)
   return {
     form,
     isLoading,
     isReading,
     isReadingList,
+    isCreate,
+    isUpdate,
+    isDelete,
     callCreateFetch,
     callReadFetch,
     callUpdateFetch,
