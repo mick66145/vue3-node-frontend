@@ -28,13 +28,14 @@ export default defineComponent({
     outline: { type: Boolean, default: false },
     rounded: { type: Boolean, default: false },
     size: { type: String, default: 'md' },
+    useLoading: { type: Boolean, default: true },
   },
-  setup () {
+  setup (props) {
     // data
     const storeApp = useApp()
 
     const isLoading = computed(() => {
-      return storeApp.isLoading
+      return props.useLoading && (storeApp.isCreate || storeApp.isUpdate || storeApp.isDelete)
     })
 
     return {
