@@ -22,7 +22,7 @@ export default function useInfiniteScroll ({
   // methods
 
   const onChangePage = () => {
-    if (total.value >= data.value.length) {
+    if ((total.value >= data.value.length) && (total.value !== data.value.length)) {
       search.page = search.page += 1
       setSessionStorage(sessionStorageKey, { search })
       if (callback && typeof (callback) === 'function') {
@@ -36,6 +36,7 @@ export default function useInfiniteScroll ({
     search.page = 1
     search.page_size = pageSize
     data.value = []
+    infiniteScroll.value.resume()
     setSessionStorage(sessionStorageKey, { search })
     if (callback && typeof (callback) === 'function') {
       callback()
@@ -44,6 +45,7 @@ export default function useInfiniteScroll ({
   const onChangeFilter = () => {
     search.page = 1
     data.value = []
+    infiniteScroll.value.resume()
     setSessionStorage(sessionStorageKey, { search })
     if (callback && typeof (callback) === 'function') {
       callback()
@@ -57,6 +59,7 @@ export default function useInfiniteScroll ({
     search.page = 1
     search.page_size = 10
     data.value = []
+    infiniteScroll.value.resume()
     setSessionStorage(sessionStorageKey, { search })
     if (callback && typeof (callback) === 'function') {
       await callback()
