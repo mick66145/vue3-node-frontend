@@ -27,10 +27,14 @@ export default defineComponent({
     const stop = () => {
       infiniteScroll.value.stop()
     }
+    const resume = () => {
+      infiniteScroll.value.resume()
+    }
     return {
       infiniteScroll,
       onLoad,
       stop,
+      resume,
     }
   },
 })
