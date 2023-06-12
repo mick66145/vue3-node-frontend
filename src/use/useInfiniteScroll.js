@@ -22,7 +22,7 @@ export default function useInfiniteScroll ({
   // methods
 
   const onChangePage = () => {
-    if (total.value >= data.value.length) {
+    if ((total.value >= data.value.length) && (total.value !== data.value.length)) {
       search.page = search.page += 1
       setSessionStorage(sessionStorageKey, { search })
       if (callback && typeof (callback) === 'function') {
