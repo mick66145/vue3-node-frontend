@@ -27,6 +27,7 @@ export default function useLine ({
         const response = await request({
           url: 'https://api.line.me/oauth2/v2.1/token',
           method: 'post',
+          withCredentials: false,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           data: {
             grant_type: 'authorization_code',
