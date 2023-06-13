@@ -12,6 +12,8 @@
 import { defineComponent, computed, onMounted, toRefs } from 'vue-demi'
 import { i18n } from '@/plugins/i18n'
 import useLine from '@/use/useLine'
+import useLoading from '@/use/useLoading'
+
 export default defineComponent({
   props: {
     label: { type: String },
@@ -35,7 +37,9 @@ export default defineComponent({
     // mounted
     onMounted(async () => {
       if (isRedirect.value) {
+        showLoading({})
         const { accessToken } = await oauth2Token()
+        hideLoading()
         emit('handleSuccess', { accessToken })
       }
     })
@@ -47,6 +51,7 @@ export default defineComponent({
       redirectUri: redirectUri.value,
       scope: scope.value,
     })
+    const { showLoading, hideLoading } = useLoading({})
 
     return {
       buttonLabel,
