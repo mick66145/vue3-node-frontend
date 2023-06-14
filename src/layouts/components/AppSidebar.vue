@@ -1,6 +1,7 @@
 <template>
   <q-drawer
     v-model="sidebarOpened"
+    side="right"
     show-if-above
     bordered
     :width="260"
