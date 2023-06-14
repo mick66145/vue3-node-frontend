@@ -1,9 +1,18 @@
 <template>
-  <q-checkbox v-model="observeValue">
-    <template v-if="$slots.default" #default>
-      <slot name="default" />
+  <q-field
+    v-model="observeValue"
+    :rules="rules"
+    borderless
+    dense
+  >
+    <template #control>
+      <q-checkbox v-model="observeValue">
+        <template v-if="$slots.default" #default>
+          <slot name="default" />
+        </template>
+      </q-checkbox>
     </template>
-  </q-checkbox>
+  </q-field>
 </template>
 
 <script>
@@ -12,6 +21,7 @@ import { defineComponent } from 'vue-demi'
 export default defineComponent({
   props: {
     modelValue: { type: [Boolean, Array], default: false },
+    rules: { type: Array },
   },
   emits: [
     'update:modelValue',
