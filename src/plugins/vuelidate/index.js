@@ -107,6 +107,9 @@ export const vuelidate = {
   dayjIsSameOrAfter (locator, message = false, format = 'YYYY-MM-DD') {
     return (val) => dayjs(val, format).isSameOrAfter(dayjs(locator, format)) || message
   },
+  isTrue (message = false) {
+    return (val) => val === true || message
+  },
 }
 
 export const useVuelidate = {
