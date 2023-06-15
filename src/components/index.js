@@ -46,6 +46,7 @@ import SkeletonImageTextList from './skeleton/SkeletonImageTextList.vue'
 import ImageUploader from './uploader/ImageUploader.vue'
 import FileUploader from './uploader/FileUploader.vue'
 import BaseTooltip from './tooltip/BaseTooltip.vue'
+import BasePopover from './popover/BasePopover.vue'
 import FixedFooter from './FixedFooter.vue'
 import MobelFixedFooter from './MobelFixedFooter.vue'
 import InfiniteScroll from './infinite-scroll/InfiniteScroll.vue'
@@ -102,6 +103,7 @@ export default {
     app.component('ImageUploader', ImageUploader)
     app.component('FileUploader', FileUploader)
     app.component('BaseTooltip', BaseTooltip)
+    app.component('BasePopover', BasePopover)
     app.component('FixedFooter', FixedFooter)
     app.component('MobelFixedFooter', MobelFixedFooter)
     app.component('InfiniteScroll', InfiniteScroll)
