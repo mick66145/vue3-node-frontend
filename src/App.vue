@@ -5,9 +5,11 @@
 <script>
 import { defineComponent } from 'vue-demi'
 import { RouterView } from 'vue-router'
+import useMetaInfo from '@/use/useMetaInfo'
 
 export default defineComponent({
   setup () {
+    useMetaInfo()
     return {
       RouterView,
     }
