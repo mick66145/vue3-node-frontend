@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createHead } from '@vueuse/head'
 import { createPinia } from 'pinia'
 
 import quasar from '@/plugins/quasar'
@@ -22,6 +23,8 @@ import { useVuelidate } from '@/plugins/vuelidate'
 import './permission'
 
 const app = createApp(App)
+const head = createHead()
+app.use(head)
 app.use(quasar)
 app.use(createPinia())
 app.use(router)
