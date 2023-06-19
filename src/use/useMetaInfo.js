@@ -32,19 +32,19 @@ export default function useMetaInfo (
     },
     {
       property: 'og:title',
-      content: () => options.title !== undefined ? options.title : defaultTitle.value,
+      content: () => options.title ? options.title : defaultTitle.value,
     },
     {
       name: 'description',
-      content: () => options.description !== undefined ? options.description : defaultDescription,
+      content: () => options.description ? options.description : defaultDescription,
     },
     {
       property: 'og:description',
-      content: () => options.description !== undefined ? options.description : defaultDescription,
+      content: () => options.description ? options.description : defaultDescription,
     },
   ]
 
-  if (options.image !== undefined) {
+  if (options.image) {
     meta.push({
       property: 'image',
       content: () => options.image,
