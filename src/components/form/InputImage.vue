@@ -68,7 +68,7 @@
 
 <script>
 import { defineComponent, computed, reactive, ref } from 'vue-demi'
-import useImgStorage from '@/use/useImgStorage'
+import useImgStorage from '@/hooks/useImgStorage'
 import ImageCropper from '../ImageCropper.vue'
 
 export default defineComponent({

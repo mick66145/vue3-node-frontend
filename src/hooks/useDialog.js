@@ -1,6 +1,6 @@
 import { ref } from 'vue-demi'
-import useCRUD from '@/use/useCRUD'
-import useQuickState from '@/use/useQuickState'
+import useCRUD from '@/hooks/useCRUD'
+import useQuickState from '@/hooks/useQuickState'
 import mapKeys from 'lodash-es/mapKeys'
 export default function useDialog ({
   formData,

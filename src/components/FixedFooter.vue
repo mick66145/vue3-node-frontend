@@ -27,7 +27,7 @@
 <script>
 import { defineComponent, computed, toRefs } from 'vue-demi'
 import { i18n } from '@/plugins/i18n'
-import useGoBack from '@/use/useGoBack'
+import useGoBack from '@/hooks/useGoBack'
 
 export default defineComponent({
   props: {

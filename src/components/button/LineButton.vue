@@ -11,8 +11,8 @@
 <script>
 import { defineComponent, computed, onMounted, toRefs } from 'vue-demi'
 import { i18n } from '@/plugins/i18n'
-import useLine from '@/use/useLine'
-import useLoading from '@/use/useLoading'
+import useLine from '@/hooks/useLine'
+import useLoading from '@/hooks/useLoading'
 
 export default defineComponent({
   props: {

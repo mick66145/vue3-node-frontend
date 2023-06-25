@@ -35,7 +35,7 @@
 
 <script>
 import { defineComponent, ref } from 'vue-demi'
-import useNotify from '@/use/useNotify'
+import useNotify from '@/hooks/useNotify'
 export default defineComponent({
   props: {
     accept: { type: String, default: 'image/png, image/jpeg, image/jpg' },

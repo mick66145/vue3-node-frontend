@@ -4,8 +4,8 @@ import axios from 'axios'
 import qs from 'qs'
 import { useUser } from '@/stores/user'
 import { getToken } from '@/utils/auth'
-import useNotify from '@/use/useNotify'
-import useLogout from '@/use/useLogout'
+import useNotify from '@/hooks/useNotify'
+import useLogout from '@/hooks/useLogout'
 
 const defaultRequestInterceptors = (config) => {
   const storeUser = useUser()

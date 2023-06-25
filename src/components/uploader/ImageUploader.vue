@@ -16,7 +16,7 @@
 <script>
 import BaseUploader from './BaseUploader.vue'
 import { defineComponent, ref } from 'vue-demi'
-import useNotify from '@/use/useNotify'
+import useNotify from '@/hooks/useNotify'
 export default defineComponent({
   components: {
     BaseUploader,

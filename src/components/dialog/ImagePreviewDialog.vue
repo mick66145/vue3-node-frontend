@@ -10,8 +10,8 @@
 
 <script>
 import { defineComponent, ref, computed } from 'vue-demi'
-import useDialog from '@/use/useDialog'
-import useImgStorage from '@/use/useImgStorage'
+import useDialog from '@/hooks/useDialog'
+import useImgStorage from '@/hooks/useImgStorage'
 
 export default defineComponent({
   setup () {
