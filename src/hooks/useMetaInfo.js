@@ -1,5 +1,5 @@
 import { useHead } from '@vueuse/head'
-import useTitle from '@/use/useTitle'
+import useTitle from '@/hooks/useTitle'
 
 export default function useMetaInfo (
   options = { title: '', description: '', image: '', titleTemplate: undefined },

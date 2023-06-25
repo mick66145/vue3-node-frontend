@@ -19,7 +19,8 @@ module.exports = {
         'mod', // 不確定分類的修改
         'wip', // 開發中
         'types', // 類型修改
-        'release', // 版本發布
+        'release', // 版本發布,
+        'renamed', // 更改資料夾、檔案名稱
       ],
     ],
     'subject-full-stop': [0, 'never'],
