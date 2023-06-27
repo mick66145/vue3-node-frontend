@@ -33,6 +33,7 @@
           :subtitle="dateSubtitle"
           :options="options"
           :locale="locale"
+          @update:modelValue="updateModelValue"
         >
           <div class="row items-center justify-end">
             <q-btn v-close-popup label="Close" color="primary" flat />
@@ -87,7 +88,9 @@ export default defineComponent({
         show.value = isShow
       }, '200')
     }
-
+    const updateModelValue = (value, reason, details) => {
+      if (value) showPopup(false)
+    }
     const focus = () => {
       showPopup(true)
     }
@@ -100,7 +103,7 @@ export default defineComponent({
       evt?.relatedTarget.parentElement.className.includes('q-date__arrow') ||
       evt?.relatedTarget.className.includes('q-btn--no-uppercase') ||
       evt?.relatedTarget.className.includes('q-btn--round')) {
-        inputData.value.focus()
+        if (!observeValue.value) inputData.value.focus()
       } else {
         showPopup(false)
       }
@@ -116,6 +119,7 @@ export default defineComponent({
       showPopup,
       focus,
       blur,
+      updateModelValue,
     }
   },
 })
