@@ -13,6 +13,7 @@
       <q-card-section class="q-dialog-footer" align="center">
         <div class="w-full">
           <confirm-button
+            v-if="showSave"
             size="lg"
             class="w-full q-mb-sm"
             :color="confirmButtonColor"
@@ -21,6 +22,7 @@
           />
           <cancel-button
             v-if="showCancel"
+            v-close-popup
             size="lg"
             class="w-full"
             :color="cancelButtonColor"
@@ -75,7 +77,7 @@ export default defineComponent({
     })
 
     // methods
-    const onSave = () => {
+    const onConfirm = () => {
       emit('save')
     }
 
@@ -96,7 +98,7 @@ export default defineComponent({
       sizeClass,
       cancelButtonLabel,
       confirmButtonLabel,
-      onSave,
+      onConfirm,
       onCancel,
       onShow,
       onHide,
