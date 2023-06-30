@@ -6,7 +6,7 @@
         <q-space />
       </q-card-section>
 
-      <q-card-section class="scroll q-dialog-body">
+      <q-card-section class="scroll q-dialog-body !max-h-25rem">
         <slot />
       </q-card-section>
 
