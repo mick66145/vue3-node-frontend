@@ -18,7 +18,6 @@
 
     <template #default>
       <q-popup-proxy
-        v-if="show"
         v-model="show"
         class="flex justify-center"
         transition-show="scale"
@@ -60,7 +59,7 @@
 
 <script>
 import $dayjs from '@/plugins/dayjs'
-import { defineComponent, ref, computed } from 'vue-demi'
+import { defineComponent, ref, computed, toRefs } from 'vue-demi'
 import { i18n } from '@/plugins/i18n'
 import { useApp } from '@/stores/app'
 export default defineComponent({
@@ -69,6 +68,8 @@ export default defineComponent({
     label: { type: String },
     placeholder: { type: String, default: '請選擇開始日期至結束日期' },
     options: { type: Array },
+    min: { type: String },
+    max: { type: String },
   },
   emits: ['update:modelValue'],
   setup (props, { emit }) {
@@ -78,6 +79,7 @@ export default defineComponent({
     const inputDateRange = ref()
     const datePicker = ref()
     const show = ref(false)
+    const { min, max, options } = toRefs(props)
     const pickerOptions = {
       shortcuts: [
         {
@@ -168,6 +170,19 @@ export default defineComponent({
     const dateSubtitle = computed(() => {
       return !observeValue.value ? ' ' : ''
     })
+    const observeOptions = computed(() => {
+      const _options = options.value
+      const dateFn = (date) => {
+        const _min = min.value
+        const _max = max.value
+        if (!_min && !_max) return true
+        if (_min && _max) return date >= _min && date <= _max
+        if (_min) return date >= _min
+        if (_max) return date <= _max
+      }
+      if (_options && _options.length > 0) return _options
+      return dateFn
+    })
 
     // methods
     const showPopup = (isShow) => {
@@ -207,6 +222,7 @@ export default defineComponent({
       locale,
       dateTitle,
       dateSubtitle,
+      observeOptions,
       focus,
       blur,
       clearFn,
