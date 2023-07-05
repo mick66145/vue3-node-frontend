@@ -6,7 +6,7 @@
     dense
   >
     <template #control>
-      <q-checkbox v-model="observeValue">
+      <q-checkbox v-model="observeValue" :label="label">
         <template v-if="$slots.default" #default>
           <slot name="default" />
         </template>
@@ -22,6 +22,7 @@ export default defineComponent({
   props: {
     modelValue: { type: [Boolean, Array], default: false },
     rules: { type: Array },
+    label: { type: String },
   },
   emits: [
     'update:modelValue',
