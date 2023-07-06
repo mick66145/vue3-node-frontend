@@ -34,6 +34,7 @@ coverage
 .env.local
 .env.*.local
 !.env.example
+!.env.localhost
 !.env.dev
 !.env.beta
 !.env.production
