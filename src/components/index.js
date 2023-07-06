@@ -34,6 +34,7 @@ import BaseIconButton from './button/BaseIconButton.vue'
 import BaseFlatButton from './button/BaseFlatButton.vue'
 import BaseImage from './image/BaseImage.vue'
 import BaseLink from './link/BaseLink.vue'
+import BaseButtonGroup from './button-group/BaseButtonGroup.vue'
 import BaseDialog from './dialog/BaseDialog.vue'
 import BaseCenterDialog from './dialog/BaseCenterDialog.vue'
 import ImagePreviewDialog from './dialog/ImagePreviewDialog.vue'
@@ -93,6 +94,7 @@ export default {
     app.component('BaseFlatButton', BaseFlatButton)
     app.component('BaseImage', BaseImage)
     app.component('BaseLink', BaseLink)
+    app.component('BaseButtonGroup', BaseButtonGroup)
     app.component('BaseDialog', BaseDialog)
     app.component('BaseCenterDialog', BaseCenterDialog)
     app.component('ImagePreviewDialog', ImagePreviewDialog)
