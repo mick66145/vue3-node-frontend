@@ -4,6 +4,7 @@
     v-model="observeValue"
     :label="label"
     :placeholder="placeholder"
+    :rules="ruleList"
     inputmode="none"
     @focus="focus()"
     @blur="blur"
@@ -46,6 +47,7 @@
 <script>
 import { useVModel } from '@vueuse/core'
 import { defineComponent, ref, computed, toRefs } from 'vue-demi'
+import { vuelidate } from '@/plugins/vuelidate'
 import { i18n } from '@/plugins/i18n'
 import { useApp } from '@/stores/app'
 export default defineComponent({
@@ -56,6 +58,7 @@ export default defineComponent({
     options: { type: Array },
     min: { type: String },
     max: { type: String },
+    rules: { type: Array, default () { return [] } },
   },
   emits: ['update:modelValue'],
   setup (props, { emit }) {
@@ -63,7 +66,7 @@ export default defineComponent({
     const store = useApp()
     const inputData = ref()
     const show = ref(false)
-    const { min, max, options } = toRefs(props)
+    const { min, max, options, rules } = toRefs(props)
     const observeValue = useVModel(props, 'modelValue', emit)
 
     // computed
@@ -95,6 +98,12 @@ export default defineComponent({
       }
       if (_options && _options.length > 0) return _options
       return dateFn
+    })
+    const ruleList = computed(() => {
+      const rule = []
+      min.value && rule.push(vuelidate.dayjIsSameOrAfter(min.value, `必需比${min.value}晚`))
+      max.value && rule.push(vuelidate.dayjIsSameOrBefore(max.value, `必需比${max.value}早`))
+      return rule.concat(rules.value)
     })
 
     // methods
@@ -132,6 +141,7 @@ export default defineComponent({
       dateTitle,
       dateSubtitle,
       observeOptions,
+      ruleList,
       showPopup,
       focus,
       blur,
