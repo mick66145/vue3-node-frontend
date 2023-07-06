@@ -8,6 +8,8 @@
   "scripts": {
     "server": "vite --host",
     "server:https": "yarn cert && vite --host",
+    "localhost": "vite --mode localhost --host",
+    "localhost:https": "yarn cert && vite --mode localhost --host",
     "dev": "vite --mode dev --host",
     "dev:https": "yarn cert && vite --mode dev --host",
     "beta": "vite --mode beta --host",
