@@ -111,7 +111,8 @@ export default defineComponent({
     const filterFn = (val, update, abort) => {
       update(() => {
         const needle = val.toLowerCase()
-        filterOptions.value = selectMatchItem(props.options.map(item => item[props.optionLabel]), needle)
+        const needleOptions = selectMatchItem(props.options.map(item => item[props.optionLabel]), needle)
+        filterOptions.value = props.options.filter(item => needleOptions.includes(item[props.optionLabel]))
       })
     }
     const clearFn = (val) => {
