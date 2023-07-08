@@ -57,13 +57,13 @@ export const selectMatchItem = (lists, keyWord) => {
   const resArr = []
   lists.filter(item => {
     if (Object.prototype.toString.call(item) === '[object String]') {
-      if (item.includes(keyWord)) {
+      if (item.toLowerCase().includes(keyWord.toLowerCase())) {
         resArr.push(item)
       }
     } else {
       for (const i in item) {
         if (Object.prototype.toString.call(item[i]) === '[object String]') {
-          if (item[i].includes(keyWord)) {
+          if (item[i].toLowerCase().includes(keyWord.toLowerCase())) {
             resArr.push(item)
             break
           }
@@ -83,12 +83,12 @@ export const selectMatchItems = (lists, keyWords) => {
   const resArr = []
   lists.filter(item => keyWords.find(keyWord => {
     if (Object.prototype.toString.call(item) === '[object String]') {
-      if (item.includes(keyWord)) {
+      if (item.toLowerCase().includes(keyWord.toLowerCase())) {
         resArr.push(item)
       }
     } else {
       for (const i in item) {
-        if (item[i].includes(keyWord)) {
+        if (item[i].toLowerCase().includes(keyWord.toLowerCase())) {
           resArr.push(item)
           break
         }
