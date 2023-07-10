@@ -6,8 +6,6 @@
     :placeholder="placeholder"
     :rules="ruleList"
     inputmode="none"
-    @focus="focus()"
-    @blur="blur"
   >
     <template #append>
       <q-icon name="event" />
@@ -22,10 +20,6 @@
         class="flex justify-center"
         transition-show="scale"
         transition-hide="scale"
-        persistent
-        no-parent-event
-        no-refocus
-        no-focus
       >
         <q-date
           v-model="observeValue"
@@ -115,23 +109,6 @@ export default defineComponent({
     const updateModelValue = (value, reason, details) => {
       if (value) showPopup(false)
     }
-    const focus = () => {
-      showPopup(true)
-    }
-
-    const blur = (evt) => {
-      // 判斷除了close按鈕和日期按鈕以外的按鈕繼續focus
-      if (evt?.relatedTarget?.className.includes('q-date') ||
-      evt?.relatedTarget?.className.includes('text-null') ||
-      evt?.relatedTarget?.className.includes('q-focus-helper') ||
-      evt?.relatedTarget?.parentElement.className.includes('q-date__arrow') ||
-      evt?.relatedTarget?.className.includes('q-btn--no-uppercase') ||
-      evt?.relatedTarget?.className.includes('q-btn--round')) {
-        inputData.value.focus()
-      } else {
-        showPopup(false)
-      }
-    }
 
     return {
       inputData,
@@ -143,8 +120,6 @@ export default defineComponent({
       observeOptions,
       ruleList,
       showPopup,
-      focus,
-      blur,
       updateModelValue,
     }
   },
@@ -152,11 +127,4 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-:deep() {
-  .q-btn {
-    .q-focus-helper {
-      @apply hidden;
-    }
-  }
-}
 </style>
