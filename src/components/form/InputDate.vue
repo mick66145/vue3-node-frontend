@@ -121,13 +121,13 @@ export default defineComponent({
 
     const blur = (evt) => {
       // 判斷除了close按鈕和日期按鈕以外的按鈕繼續focus
-      if (evt?.relatedTarget.className.includes('q-date') ||
-      evt?.relatedTarget.className.includes('text-null') ||
-      evt?.relatedTarget.className.includes('q-focus-helper') ||
-      evt?.relatedTarget.parentElement.className.includes('q-date__arrow') ||
-      evt?.relatedTarget.className.includes('q-btn--no-uppercase') ||
-      evt?.relatedTarget.className.includes('q-btn--round')) {
-        if (!observeValue.value) inputData.value.focus()
+      if (evt?.relatedTarget?.className.includes('q-date') ||
+      evt?.relatedTarget?.className.includes('text-null') ||
+      evt?.relatedTarget?.className.includes('q-focus-helper') ||
+      evt?.relatedTarget?.parentElement.className.includes('q-date__arrow') ||
+      evt?.relatedTarget?.className.includes('q-btn--no-uppercase') ||
+      evt?.relatedTarget?.className.includes('q-btn--round')) {
+        inputData.value.focus()
       } else {
         showPopup(false)
       }
@@ -152,4 +152,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+:deep() {
+  .q-btn {
+    .q-focus-helper {
+      @apply hidden;
+    }
+  }
+}
 </style>
