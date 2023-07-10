@@ -233,4 +233,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+:deep() {
+  .q-btn {
+    .q-focus-helper {
+      @apply hidden;
+    }
+  }
+}
 </style>
