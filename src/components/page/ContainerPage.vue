@@ -1,0 +1,98 @@
+<template>
+  <q-page>
+    <slot />
+  </q-page>
+</template>
+
+<script>
+import { defineComponent } from 'vue-demi'
+export default defineComponent({
+  setup () {
+    return {
+    }
+  },
+})
+</script>
+
+<style lang="scss" scoped>
+@import "@/styles/abstracts/quasar-variables";
+
+$container-padding: 20px;
+
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: $breakpoint-sm-min) {
+  .container,
+  .container-sm {
+    max-width: $breakpoint-xs - $container-padding;
+  }
+}
+
+@media (min-width: $breakpoint-md-min) {
+  .container,
+  .container-sm,
+  .container-md {
+    max-width: $breakpoint-sm - $container-padding;
+  }
+}
+
+@media (min-width: $breakpoint-lg-min) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg {
+    max-width: $breakpoint-md - $container-padding;
+  }
+}
+
+@media (min-width: $breakpoint-xl-min) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: $breakpoint-lg - $container-padding;
+  }
+}
+
+@media (min-width: $breakpoint-xxl-min) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    max-width: $breakpoint-xl - $container-padding;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    max-width: 1560px;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    max-width: 1850px;
+  }
+}
+</style>
