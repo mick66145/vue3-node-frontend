@@ -82,7 +82,7 @@
 
 <script>
 import { useVModel } from '@vueuse/core'
-import { defineComponent, ref } from 'vue-demi'
+import { defineComponent, ref, computed } from 'vue-demi'
 import { selectMatchItem } from '@/utils/filter'
 export default defineComponent({
   props: {
@@ -103,8 +103,16 @@ export default defineComponent({
     'update:modelValue',
   ],
   setup (props, { emit }) {
+    // data
     const filterOptions = ref(props.options)
     const observeValue = useVModel(props, 'modelValue', emit)
+
+    // computed
+    const hideSelected = computed(() => {
+      return props.useInput
+    })
+
+    // methods
     const filterFn = (val, update, abort) => {
       update(() => {
         const needle = val.toLowerCase()
@@ -124,6 +132,7 @@ export default defineComponent({
     return {
       observeValue,
       filterOptions,
+      hideSelected,
       emit,
       filterFn,
       clearFn,

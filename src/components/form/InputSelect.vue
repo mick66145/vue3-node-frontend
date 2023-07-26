@@ -83,7 +83,7 @@
 
 <script>
 import { useVModel } from '@vueuse/core'
-import { defineComponent, ref } from 'vue-demi'
+import { defineComponent, ref, computed } from 'vue-demi'
 import { selectMatchItem } from '@/utils/filter'
 export default defineComponent({
   props: {
@@ -94,7 +94,6 @@ export default defineComponent({
     useInput: { type: Boolean, default: true },
     mapOptions: { type: Boolean, default: true },
     emitValue: { type: Boolean, default: false },
-    hideSelected: { type: Boolean, default: true },
     fillInput: { type: Boolean, default: true },
     inputDebounce: { type: Number, default: 0 },
     transitionShow: { type: String, default: 'scale' },
@@ -106,8 +105,16 @@ export default defineComponent({
     'update:modelValue',
   ],
   setup (props, { emit }) {
+    // data
     const filterOptions = ref(props.options)
     const observeValue = useVModel(props, 'modelValue', emit)
+
+    // computed
+    const hideSelected = computed(() => {
+      return props.useInput
+    })
+
+    // methods
     const filterFn = (val, update, abort) => {
       update(() => {
         const needle = val.toLowerCase()
@@ -127,6 +134,7 @@ export default defineComponent({
     return {
       observeValue,
       filterOptions,
+      hideSelected,
       filterFn,
       clearFn,
       optionValueFn,
