@@ -17,6 +17,7 @@ import '@/styles/index.scss'
 
 // plugins
 import { useDayjs } from '@/plugins/dayjs'
+import vxeTable from '@/plugins/vxe-table'
 import i18n from '@/plugins/i18n'
 import { useVuelidate } from '@/plugins/vuelidate'
 
@@ -31,5 +32,6 @@ app.use(router)
 app.use(GlobalComponents)
 app.use(useDayjs)
 app.use(i18n)
+app.use(vxeTable)
 app.use(useVuelidate)
 app.mount('#app')
