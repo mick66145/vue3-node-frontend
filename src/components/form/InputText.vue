@@ -6,6 +6,7 @@
     :clearable="clearable"
     :outlined="outlined"
     :placeholder="placeholder"
+    :rules="ruleList"
   >
     <template v-if="$slots.default" #default>
       <slot name="default" />
@@ -45,25 +46,39 @@
 
 <script>
 import { useVModel } from '@vueuse/core'
-import { defineComponent, ref } from 'vue-demi'
+import { defineComponent, ref, computed, toRefs } from 'vue-demi'
+import { vuelidate } from '@/plugins/vuelidate'
+
 export default defineComponent({
   props: {
     modelValue: { type: [String, Number, Object, null] },
+    rules: { type: Array, default () { return [] } },
     clearable: { type: Boolean, default: true },
     outlined: { type: Boolean, default: true },
     placeholder: { type: String, default: '請輸入' },
-
+    maxLength: { type: Number, default: 255 },
   },
   emits: ['update:modelValue'],
   setup (props, { emit }) {
+    // data
     const input = ref()
+    const { rules, maxLength } = toRefs(props)
     const observeValue = useVModel(props, 'modelValue', emit)
+
+    // computed
+    const ruleList = computed(() => {
+      const rule = []
+      rule.push(vuelidate.maxLength(maxLength.value, `長度不可超過${maxLength.value}字`))
+      return rule.concat(rules.value)
+    })
+
     const focus = () => {
       input.value.focus()
     }
     return {
       input,
       observeValue,
+      ruleList,
       focus,
     }
   },
