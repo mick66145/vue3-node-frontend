@@ -7,6 +7,7 @@
       :color="color"
       :inline="inline"
       :type="type"
+      :disable="disable"
     />
   </div>
 </template>
@@ -16,12 +17,13 @@ import { useVModel } from '@vueuse/core'
 import { defineComponent } from 'vue-demi'
 export default defineComponent({
   props: {
-    modelValue: { type: [String, Number, null, Object] },
+    modelValue: { type: [String, Number, null, Object, Boolean] },
     options: { type: Array, default () { return [] } },
     label: { type: String },
     inline: { type: Boolean, default: true },
     color: { type: String, default: 'primary' },
     type: { type: String },
+    disable: { type: Boolean, default: false },
   },
   emits: [
     'update:modelValue',
