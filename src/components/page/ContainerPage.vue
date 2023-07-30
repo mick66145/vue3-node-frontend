@@ -25,8 +25,20 @@ $container-padding: 20px;
 .container-lg,
 .container-xl {
   width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+}
+
+@media (max-width: $breakpoint-xs-max) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 100%;
+  }
 }
 
 @media (min-width: $breakpoint-sm-min) {
