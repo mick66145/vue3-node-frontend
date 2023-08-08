@@ -55,3 +55,11 @@ export const mapListValueByList = (list, values, mapKey) => {
 export const groupBy = (list, groupKey) => {
   return _(list).chain().groupBy(groupKey).value()
 }
+
+/**
+* @param {Object} object 所有數據
+* @param {Array} mapKeyList mapList欄位
+*/
+export const objectKeyNull = (object, mapKeyList, nullValue = '') => {
+  return _.mapValues(object, (value, key) => (mapKeyList.includes(key) ? nullValue : value))
+}
