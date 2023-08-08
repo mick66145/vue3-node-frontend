@@ -93,19 +93,34 @@ export const vuelidate = {
     return (val) => val === locator || message
   },
   regex (regex, message = false) {
-    return (val) => regex.test(val) || message
+    return (val) => {
+      if (!val) return true
+      return regex.test(val) || message
+    }
   },
   dayjIsBefore (locator, message = false, format = 'YYYY-MM-DD') {
-    return (val) => dayjs(val, format).isBefore(dayjs(locator, format)) || message
+    return (val) => {
+      if (!val) return true
+      return dayjs(val, format).isBefore(dayjs(locator, format)) || message
+    }
   },
   dayjIsSameOrBefore (locator, message = false, format = 'YYYY-MM-DD') {
-    return (val) => dayjs(val, format).isSameOrBefore(dayjs(locator, format)) || message
+    return (val) => {
+      if (!val) return true
+      return dayjs(val, format).isSameOrBefore(dayjs(locator, format)) || message
+    }
   },
   dayjIsAfter (locator, message = false, format = 'YYYY-MM-DD') {
-    return (val) => dayjs(val, format).isAfter(dayjs(locator, format)) || message
+    return (val) => {
+      if (!val) return true
+      return dayjs(val, format).isAfter(dayjs(locator, format)) || message
+    }
   },
   dayjIsSameOrAfter (locator, message = false, format = 'YYYY-MM-DD') {
-    return (val) => dayjs(val, format).isSameOrAfter(dayjs(locator, format)) || message
+    return (val) => {
+      if (!val) return true
+      return dayjs(val, format).isSameOrAfter(dayjs(locator, format)) || message
+    }
   },
   isTrue (message = false) {
     return (val) => val === true || message
