@@ -60,6 +60,7 @@ import FixedFooter from './FixedFooter.vue'
 import MobelFixedFooter from './MobelFixedFooter.vue'
 import InfiniteScroll from './infinite-scroll/InfiniteScroll.vue'
 import InfiniteScrollReverse from './infinite-scroll/InfiniteScrollReverse.vue'
+import BaseCarousel from './carousel/BaseCarousel.vue'
 import ContainerPage from './page/ContainerPage.vue'
 import ContainerBlock from './block/ContainerBlock.vue'
 import Pagination from './Pagination.vue'
@@ -128,6 +129,7 @@ export default {
     app.component('MobelFixedFooter', MobelFixedFooter)
     app.component('InfiniteScroll', InfiniteScroll)
     app.component('InfiniteScrollReverse', InfiniteScrollReverse)
+    app.component('BaseCarousel', BaseCarousel)
     app.component('ContainerPage', ContainerPage)
     app.component('ContainerBlock', ContainerBlock)
     app.component('Pagination', Pagination)
