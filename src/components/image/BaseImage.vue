@@ -14,6 +14,7 @@
       :class="preview && 'cursor-pointer'"
       @click="onPreview"
     >
+      <slot />
       <template #error>
         <div class="bg-dark flex flex-center text-white absolute-full">
           載入失敗
