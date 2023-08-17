@@ -64,6 +64,8 @@ import BaseCarousel from './carousel/BaseCarousel.vue'
 import ContainerPage from './page/ContainerPage.vue'
 import ContainerBlock from './block/ContainerBlock.vue'
 import Pagination from './Pagination.vue'
+import VxeClientTable from './VxeClientTable.vue'
+import VxeServerTable from './VxeServerTable.vue'
 import Calendar from './calendar/Calendar.vue'
 export default {
   install (app) {
@@ -133,6 +135,8 @@ export default {
     app.component('ContainerPage', ContainerPage)
     app.component('ContainerBlock', ContainerBlock)
     app.component('Pagination', Pagination)
+    app.component('VxeClientTable', VxeClientTable)
+    app.component('VxeServerTable', VxeServerTable)
     app.component('Calendar', Calendar)
   },
 }
