@@ -3,6 +3,8 @@ import Cookies from 'js-cookie'
 import messages from '@intlify/unplugin-vue-i18n/messages'
 import quasarEnLocale from 'quasar/lang/en-US'
 import quasarZhTwLocale from 'quasar/lang/zh-TW'
+import vxeTableEn from 'vxe-table/lib/locale/lang/en-US'
+import vxeTableZhTw from 'vxe-table/lib/locale/lang/zh-TW'
 
 // locale value 要 kebab case
 export const locales = {
@@ -10,8 +12,8 @@ export const locales = {
   tw: 'zh-hant-tw',
 }
 
-messages.en = { ...messages.en, ...quasarEnLocale }
-messages['zh-hant-tw'] = { ...messages['zh-hant-tw'], ...quasarZhTwLocale }
+messages.en = { ...messages.en, ...vxeTableEn, ...quasarEnLocale }
+messages['zh-hant-tw'] = { ...messages['zh-hant-tw'], ...vxeTableZhTw, ...quasarZhTwLocale }
 
 export function getLanguage () {
   const chooseLanguage = Cookies.get('language')
