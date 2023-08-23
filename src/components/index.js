@@ -69,6 +69,7 @@ import Pagination from './Pagination.vue'
 import VxeClientTable from './VxeClientTable.vue'
 import VxeServerTable from './VxeServerTable.vue'
 import Calendar from './calendar/Calendar.vue'
+import FileList from './FileList.vue'
 export default {
   install (app) {
     app.component('SvgIcon', SvgIcon)
@@ -142,5 +143,6 @@ export default {
     app.component('VxeClientTable', VxeClientTable)
     app.component('VxeServerTable', VxeServerTable)
     app.component('Calendar', Calendar)
+    app.component('FileList', FileList)
   },
 }
