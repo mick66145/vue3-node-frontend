@@ -45,6 +45,7 @@ class AuthResource extends Resource {
       method: 'get',
       params: query,
     }).then(res => res.data)
+      .then(res => res.data)
   }
 
   async logout () {
