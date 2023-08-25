@@ -1,4 +1,4 @@
-import { AuthResource, MeResource } from '@/api'
+import { AuthResource } from '@/api'
 import {
   getToken,
   setToken,
@@ -17,7 +17,6 @@ export const useUser = defineStore({
     info: '',
     permissionList: [],
     authResource: new AuthResource(),
-    meResource: new MeResource(),
   }),
   getters: {
     isLogin: state => !!state.token,
@@ -64,6 +63,17 @@ export const useUser = defineStore({
       })
     },
 
+    getLoginCaptcha (payload) {
+      /* 如果有登入驗證碼的api就使用以下註解 */
+      // return this.authResource.getLoginCaptcha(payload)
+      //   .then(res => {
+      //     return res
+      //   })
+      return new Promise((resolve) => {
+        resolve(true)
+      })
+    },
+
     bind (payload) {
       /* 如果有綁定的api就使用以下註解 */
       // return this.authResource.bind(payload)
@@ -78,7 +88,7 @@ export const useUser = defineStore({
     whoami () {
       /* 如果有Me的api就使用以下註解 */
       // return new Promise((resolve, reject) => {
-      //   this.meResource.me()
+      //   this.authResource.me()
       //     .then(res => {
       //       if (!res) {
       //         reject(new Error('Verification failed, please Login again.'))
@@ -98,7 +108,7 @@ export const useUser = defineStore({
     permission () {
       /* 如果有權限的api就使用以下註解 */
       // return new Promise((resolve, reject) => {
-      //   this.meResource.permission()
+      //   this.authResource.permission()
       //     .then(res => {
       //       const { list } = res
       //       this.permissionList = list.map(permission => { return permission.name })
@@ -113,11 +123,11 @@ export const useUser = defineStore({
     },
 
     profile (payload) {
-      return this.meResource.profile(payload)
+      return this.authResource.profile(payload)
     },
 
     changePassword (payload) {
-      return this.meResource.changePassword(payload)
+      return this.authResource.changePassword(payload)
     },
 
     logout () {
