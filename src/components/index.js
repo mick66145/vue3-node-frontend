@@ -70,6 +70,7 @@ import VxeClientTable from './VxeClientTable.vue'
 import VxeServerTable from './VxeServerTable.vue'
 import Calendar from './calendar/Calendar.vue'
 import FileList from './FileList.vue'
+import Esign from './Esign.vue'
 export default {
   install (app) {
     app.component('SvgIcon', SvgIcon)
@@ -144,5 +145,6 @@ export default {
     app.component('VxeServerTable', VxeServerTable)
     app.component('Calendar', Calendar)
     app.component('FileList', FileList)
+    app.component('Esign', Esign)
   },
 }
