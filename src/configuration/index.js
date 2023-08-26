@@ -1,5 +1,6 @@
 const config = {
   backendHost: '$VITE_APP_BACKEND_HOST',
+  fileServerHost: '$VITE_APP_FILE_SERVER_HOST',
 }
 
 // 代入與替換
