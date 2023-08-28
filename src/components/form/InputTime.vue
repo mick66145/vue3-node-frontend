@@ -27,7 +27,7 @@
         no-refocus
         no-focus
       >
-        <q-time v-model="observeValue">
+        <q-time v-model="observeValue" :with-seconds="withSeconds">
           <div class="row items-center justify-end">
             <q-btn v-close-popup label="Close" color="primary" flat />
           </div>
@@ -45,6 +45,7 @@ export default defineComponent({
     modelValue: { type: String },
     label: { type: String },
     placeholder: { type: String, default: '年/月/日' },
+    withSeconds: { type: Boolean, default: false },
   },
   emits: ['update:modelValue'],
   setup (props, { emit }) {
