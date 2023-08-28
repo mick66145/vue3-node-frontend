@@ -63,7 +63,7 @@ export default defineComponent({
     // computed
     const ruleList = computed(() => {
       const rule = [
-        vuelidate.twUniformNumber(true, '格式錯誤，請輸入正確的統一編號格式'),
+        vuelidate.isGuiNumberValid(true, '格式錯誤，請輸入正確的統一編號格式'),
       ]
       return rule.concat(rules.value)
     })

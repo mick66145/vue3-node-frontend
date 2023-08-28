@@ -1,6 +1,18 @@
 // https://github.com/cuatromedios/quasar-app-extension-vuelidate-rules
 
 import * as methods from '@vuelidate/validators'
+import {
+  isGuiNumberValid, // 統一編號
+  isNationalIdentificationNumberValid, // 身分證字號
+  isResidentCertificateNumberValid, // 居留證編號
+  isNewResidentCertificateNumberValid, // 新式居留證編號
+  isOriginalResidentCertificateNumberValid, // 舊式居留證編號
+  isCitizenDigitalCertificateNumberValid, // 自然人憑證
+  isEInvoiceCellPhoneBarcodeValid, // 手機條碼
+  isEInvoiceDonateCodeValid, // 捐贈碼
+  isCreditCardNumberValid, // 信用卡
+} from './taiwan-id-validator'
+
 import dayjs from 'dayjs'
 
 export const vuelidate = {
@@ -125,47 +137,16 @@ export const vuelidate = {
   isTrue (message = false) {
     return (val) => val === true || message
   },
-  twPassport (message = false) {
+  isGuiNumberValid (extended = true, message = false) {
     return (val) => {
       if (!val) return true
-      return (/^[A-Z][12]\d{8}$/.test(val) && [...val].reduce((sum, digit, index) => index === 0 ? sum + digit.charCodeAt() - 55 : sum + parseInt(digit) * (10 - index), 0) % 10 === 0) || message
+      return isGuiNumberValid(val, extended) || message
     }
   },
-  twUniformNumber (extended = true, message = false) {
+  isNationalIdentificationNumberValid (message = false) {
     return (val) => {
       if (!val) return true
-      const multiply = (a, b) => { return a * b }
-      const add = (a, b) => { return a + b }
-      const zipWith = (a1, a2, f) => {
-        const length = Math.min(a1.length, a2.length)
-        const result = []
-        for (let i = 0; i < length; i++) result[i] = f(a1[i], a2[i])
-        return result
-      }
-      if (typeof val !== 'string' && typeof val !== 'number') return false || message
-      const GUI_NUMBER_COEFFICIENTS = [1, 2, 1, 2, 1, 2, 4, 1]
-      const n = val.toString()
-      const regex = /^\d{8}$/
-      if (!regex.test(n)) return false || message
-      /**
-        * Step 1: 先把統一編號的每個數字分別乘上對應的係數 (1, 2, 1, 2, 1, 2, 4, 1)
-        * Step 2: 再把個別乘積的十位數與個位數相加，得出八個小於 10 的數字
-      **/
-      const intRadix = 10
-      const checksum = zipWith(GUI_NUMBER_COEFFICIENTS, n.split('')
-        .map(c => parseInt(c, intRadix)), multiply)
-        .map(n => (n % 10) + Math.floor(n / 10))
-        .reduce(add, 0)
-
-      /**
-        * Step 3: 檢查把這 8 個數字相加之後計算此和除以 5 or 10 的餘數
-        * Step 4:
-        *  4-1: 若是餘數為 0，則為正確的統一編號
-        *  4-2: 若是餘數為 9，且原統一編號的第七位是 7，則也為正確的統一編號
-      **/
-      const divisor = extended ? 5 : 10
-
-      return (checksum % divisor === 0 || (parseInt(n.charAt(6), intRadix) === 7 && (checksum + 1) % divisor === 0)) || message
+      return isNationalIdentificationNumberValid(val) || message
     }
   },
 }

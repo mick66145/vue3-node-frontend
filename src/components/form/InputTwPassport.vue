@@ -65,7 +65,7 @@ export default defineComponent({
     // computed
     const ruleList = computed(() => {
       const rule = [
-        vuelidate.twPassport('格式錯誤，請輸入正確的身分證字號格式'),
+        vuelidate.isNationalIdentificationNumberValid('格式錯誤，請輸入正確的身分證字號格式'),
       ]
       return rule.concat(rules.value)
     })
