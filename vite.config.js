@@ -86,7 +86,8 @@ export default defineConfig(({ command, mode }) => {
       }),
       VueI18nPlugin({
         compositionOnly: false,
-        include: path.resolve(__dirname, 'src/locales/**'),
+        runtimeOnly: false,
+        include: resolve(dirname(fileURLToPath(import.meta.url)), './src/locales/**'),
       }),
       quasar({
         sassVariables: 'src/styles/abstracts/quasar-variables.scss',
