@@ -22,6 +22,9 @@ import vxeTable from '@/plugins/vxe-table'
 import i18n from '@/plugins/i18n'
 import { useVuelidate } from '@/plugins/vuelidate'
 
+// directive
+import downLoadUrl from '@/directive/download-url'
+
 import './permission'
 
 const app = createApp(App)
@@ -36,4 +39,5 @@ app.use(useDayjs)
 app.use(i18n)
 app.use(vxeTable)
 app.use(useVuelidate)
+app.use(downLoadUrl)
 app.mount('#app')
