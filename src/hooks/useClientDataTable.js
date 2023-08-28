@@ -1,6 +1,6 @@
 import { reactive, ref, watch } from 'vue-demi'
 import useSessionStorage from './useSessionStorage'
-import XEUtils from 'xe-utils'
+
 import _ from 'lodash-es'
 export default function useClientDataTable ({
   searchParames = {},
@@ -32,6 +32,7 @@ export default function useClientDataTable ({
 
   const onChangePage = (page) => {
     search.page = page
+    data.value = getData()
     setSessionStorage(sessionStorageKey, { search })
   }
 
@@ -41,31 +42,25 @@ export default function useClientDataTable ({
   }
 
   const onKeywordSearch = (keyword) => {
-    const filterName = XEUtils.toValueString(keyword).trim().toLowerCase()
-    if (filterName) {
-      const searchProps = _(tableFields).map('field').value()
-      const rest = originalData.value.filter(item => searchProps.some(key => XEUtils.toValueString(item[key]).toLowerCase().indexOf(filterName) > -1))
-      data.value = rest.map(row => {
-        const item = Object.assign({}, row)
-        searchProps.forEach(key => {
-          item[key] = XEUtils.toValueString(item[key])
-        })
-        return item
-      })
-    } else {
-      data.value = originalData.value
-    }
+    search.page = 1
     setSessionStorage(sessionStorageKey, { search, keyword: keyword })
   }
 
   const onReset = () => {
     search.page = 1
+    data.value = getData()
     setSessionStorage(sessionStorageKey, { search })
+  }
+
+  const getData = () => {
+    const startIndex = (search.page - 1) * search.page_size
+    const endIndex = startIndex + search.page_size
+    return originalData.value.slice(startIndex, endIndex)
   }
 
   // watch
   watch(() => originalData.value, (newValue) => {
-    data.value = newValue
+    data.value = getData()
   })
 
   return {
