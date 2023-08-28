@@ -1,5 +1,5 @@
 <template>
-  <label>{{ label }}<span v-if="required" class="text-xl text-negative ml-1">*</span></label>
+  <label v-if="label">{{ label }}<span v-if="required" class="text-xl text-negative ml-1">*</span></label>
   <div class="row q-col-gutter-sm">
     <div :class="cityCol">
       <input-city-select
