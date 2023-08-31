@@ -30,6 +30,7 @@ class Resource {
       method: 'post',
       data: params,
     }).then(res => res.data)
+      .then(res => res.data)
   }
 
   patch (id, params) {
@@ -38,6 +39,7 @@ class Resource {
       method: 'patch',
       data: params,
     }).then(res => res.data)
+      .then(res => res.data)
   }
 
   put (id, params) {
