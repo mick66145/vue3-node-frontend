@@ -1,4 +1,4 @@
-import Resource from './resource'
+import Resource from '@/api/restful/resource'
 import request from '@/utils/request'
 import { baseModules } from '@/class'
 
