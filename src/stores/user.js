@@ -1,4 +1,4 @@
-import { AuthResource } from '@/api'
+import { baseApiModules } from '@/api'
 import {
   getToken,
   setToken,
@@ -16,7 +16,7 @@ export const useUser = defineStore({
     lineAccessToken: getLineAccessToken(),
     info: '',
     permissionList: [],
-    authResource: new AuthResource(),
+    authResource: new baseApiModules.AuthResource(),
   }),
   getters: {
     isLogin: state => !!state.token,
