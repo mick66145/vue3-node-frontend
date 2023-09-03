@@ -1,6 +1,6 @@
 import Resource from './resource'
 import request from '@/utils/request'
-import { Me } from '@/class'
+import { baseModules } from '@/class'
 
 class AuthResource extends Resource {
   constructor () {
@@ -69,7 +69,7 @@ class AuthResource extends Resource {
       method: 'get',
     }).then(res => res.data)
       .then(res => {
-        const meObj = new Me({
+        const meObj = new baseModules.Me({
           ...res.data,
         })
         return meObj

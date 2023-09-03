@@ -1,3 +1,3 @@
-export { default as Area } from './modules/Area'
-export { default as City } from './modules/City'
-export { default as Me } from './modules/Me'
+import { exportBaseModules } from './modules/basic-base'
+
+export const baseModules = exportBaseModules()
