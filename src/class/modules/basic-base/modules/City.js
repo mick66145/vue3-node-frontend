@@ -1,4 +1,4 @@
-import Base from './Base'
+import Base from '@/class/modules/Base'
 
 class City extends Base {
 
@@ -8,12 +8,10 @@ class City extends Base {
 
   constructor(obj) {
     super();
-    (obj) && (this.setInit(obj))
-  }
-
-  setInit(obj) {
-    this.id = obj.id
-    this.name = obj.name
+    if (obj) {
+      this.id = obj?.id
+      this.name = obj?.name
+    }
   }
 }
 export default City

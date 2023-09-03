@@ -1,4 +1,4 @@
-import Base from './Base'
+import Base from '@/class/modules/Base'
 
 class Me extends Base {
 
