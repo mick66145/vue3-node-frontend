@@ -1,6 +1,6 @@
 import Resource from './resource'
 import request from '@/utils/request'
-import { City } from '@/class'
+import { baseModules } from '@/class'
 
 class CityResource extends Resource {
   constructor () {
@@ -15,7 +15,7 @@ class CityResource extends Resource {
     }).then(res => res.data)
       .then(res => {
         res.data.list = [...res.data.list].map((element) => {
-          const cityObj = new City(element)
+          const cityObj = new baseModules.City(element)
           return cityObj
         })
         const { list, meta } = res.data
@@ -40,7 +40,7 @@ class CityResource extends Resource {
       params: query,
     }).then(res => res.data)
       .then(res => {
-        const cityObj = new City({
+        const cityObj = new baseModules.City({
           ...res.data,
         })
         return cityObj

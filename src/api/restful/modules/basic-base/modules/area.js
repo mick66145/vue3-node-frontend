@@ -1,6 +1,6 @@
 import Resource from './resource'
 import request from '@/utils/request'
-import { Area } from '@/class'
+import { baseModules } from '@/class'
 
 class AreaResource extends Resource {
   constructor () {
@@ -15,7 +15,7 @@ class AreaResource extends Resource {
     }).then(res => res.data)
       .then(res => {
         res.data.list = [...res.data.list].map((element) => {
-          const areaObj = new Area(element)
+          const areaObj = new baseModules.Area(element)
           return areaObj
         })
         const { list, meta } = res.data
@@ -40,7 +40,7 @@ class AreaResource extends Resource {
       params: query,
     }).then(res => res.data)
       .then(res => {
-        const areaObj = new Area({
+        const areaObj = new baseModules.Area({
           ...res.data,
         })
         return areaObj
