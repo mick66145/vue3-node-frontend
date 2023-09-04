@@ -1,10 +1,10 @@
-import { inject } from 'vue-demi'
+import Configuration from '@/configuration'
 
 export default function useImgStorage () {
-  const imgServerHost = inject('imgServerHost')
+  const fileBaseUrl = `${Configuration('fileServerHost')}`
   const getImageSrc = ({ filename, size = '100x' }) => {
     if (!filename) return ''
-    const url = `${imgServerHost}/display/resize/${size}/${filename}`
+    const url = `${fileBaseUrl}/display/resize/${size}/${filename}`
     return url
   }
 
