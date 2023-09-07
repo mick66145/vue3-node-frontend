@@ -5,18 +5,18 @@
     class="h-full full-width"
   >
     <template #control>
-      <div v-if="observeValue.file" class="q-mb-md full-width">
+      <div v-if="state.file" class="q-mb-md full-width">
         <q-list dense bordered padding class="rounded-borders">
           <q-item-label header>Files</q-item-label>
           <q-item
-            v-downloadUrl="{url:preview(observeValue), name:observeValue.file.filename}"
+            v-downloadUrl="{url:preview(state), name:state.file.filename}"
             clickable
           >
             <q-item-section avatar top>
               <q-avatar icon="assignment" color="grey" text-color="white" />
             </q-item-section>
             <q-item-section>
-              <q-item-label lines="1">{{ observeValue.file.filename }}</q-item-label>
+              <q-item-label lines="1">{{ state.file.filename }}</q-item-label>
             </q-item-section>
             <q-item-section side>
               <q-btn
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed } from 'vue-demi'
+import { defineComponent, ref, reactive, computed } from 'vue-demi'
 import useMessageDialog from '@/hooks/useMessageDialog'
 
 export default defineComponent({
@@ -62,10 +62,13 @@ export default defineComponent({
   setup (props, { emit }) {
     // data
     const fileUpload = ref()
-
+    const state = reactive({
+      file: '',
+    })
     // computed
     const observeValue = computed({
       get () {
+        state.file = props.modelValue
         return props.modelValue
       },
       set (value) {
@@ -83,14 +86,10 @@ export default defineComponent({
     const onFile = async (fileObj) => {
       const { file, base64 } = fileObj
       const state = {
-        alt: '',
-        title: '',
-        file: {
-          blobURL: URL.createObjectURL(file),
-          raw: file,
-          base64: base64,
-          filename: file.name,
-        },
+        blobURL: URL.createObjectURL(file),
+        raw: file,
+        base64: base64,
+        filename: file.name,
       }
       observeValue.value = state
     }
@@ -106,6 +105,7 @@ export default defineComponent({
     return {
       fileUpload,
       observeValue,
+      state,
       preview,
       onFile,
       onDelete,
