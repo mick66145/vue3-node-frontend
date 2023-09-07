@@ -1,4 +1,5 @@
 <template>
+  <message-dialog />
   <router-view />
 </template>
 
