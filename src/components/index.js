@@ -28,6 +28,7 @@ import InputGender from './form/InputGender.vue'
 import InputTel from './form/InputTel.vue'
 import InputTwPassport from './form/InputTwPassport.vue'
 import InputTwUniformNumber from './form/InputTwUniformNumber.vue'
+import InputFileUpload from './form/InputFileUpload.vue'
 import BaseButton from './button/BaseButton.vue'
 import AddButton from './button/AddButton.vue'
 import DeleteButton from './button/DeleteButton.vue'
@@ -103,6 +104,7 @@ export default {
     app.component('InputTel', InputTel)
     app.component('InputTwPassport', InputTwPassport)
     app.component('InputTwUniformNumber', InputTwUniformNumber)
+    app.component('InputFileUpload', InputFileUpload)
     app.component('BaseButton', BaseButton)
     app.component('AddButton', AddButton)
     app.component('DeleteButton', DeleteButton)
