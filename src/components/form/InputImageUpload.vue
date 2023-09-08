@@ -152,12 +152,17 @@ export default defineComponent({
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .input-image {
   @apply w-full;
 }
 
-:deep(.q-field__bottom) {
-  display: none;
+.q-field--standard {
+  :deep(.q-field__control) {
+    &::before {
+      @apply border-b-0;
+    }
+  }
 }
+
 </style>
