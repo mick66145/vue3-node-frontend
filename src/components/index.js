@@ -29,6 +29,8 @@ import InputTel from './form/InputTel.vue'
 import InputTwPassport from './form/InputTwPassport.vue'
 import InputTwUniformNumber from './form/InputTwUniformNumber.vue'
 import InputFileUpload from './form/InputFileUpload.vue'
+import InputCreditCard from './form/InputCreditCard.vue'
+import InputCreditCardExpiredDate from './form/InputCreditCardExpiredDate.vue'
 import BaseButton from './button/BaseButton.vue'
 import AddButton from './button/AddButton.vue'
 import DeleteButton from './button/DeleteButton.vue'
@@ -105,6 +107,8 @@ export default {
     app.component('InputTwPassport', InputTwPassport)
     app.component('InputTwUniformNumber', InputTwUniformNumber)
     app.component('InputFileUpload', InputFileUpload)
+    app.component('InputCreditCard', InputCreditCard)
+    app.component('InputCreditCardExpiredDate', InputCreditCardExpiredDate)
     app.component('BaseButton', BaseButton)
     app.component('AddButton', AddButton)
     app.component('DeleteButton', DeleteButton)

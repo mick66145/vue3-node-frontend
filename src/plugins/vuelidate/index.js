@@ -149,6 +149,12 @@ export const vuelidate = {
       return isNationalIdentificationNumberValid(val) || message
     }
   },
+  isCreditCardNumberValid (message = false) {
+    return (val) => {
+      if (!val) return true
+      return isCreditCardNumberValid(val) || message
+    }
+  },
 }
 
 export const useVuelidate = {
