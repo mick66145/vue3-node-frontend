@@ -49,7 +49,7 @@ export default function useDialog ({
         data.total = rowData.length
       } else {
         mapKeys(data.state, (_, key) => {
-          data.state[key] = rowData[key] === undefined ? '' : rowData[key]
+          data.state[key] = rowData[key] === undefined ? (data.state[key] !== undefined ? data.state[key] : '') : rowData[key]
         })
       }
     }
