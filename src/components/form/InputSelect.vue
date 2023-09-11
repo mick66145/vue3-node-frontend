@@ -123,7 +123,7 @@ export default defineComponent({
       })
     }
     const clearFn = (val) => {
-      observeValue.value = ''
+      observeValue.value = null
     }
     const optionValueFn = (item) => {
       return item[props.optionValue] ? item[props.optionValue] : item
