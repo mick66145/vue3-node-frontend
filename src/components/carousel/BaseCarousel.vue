@@ -6,6 +6,7 @@
     :navigation="navigation"
     :infinite="infinite"
     :autoplay="observeAutoplay"
+    :swipeable="swipeable"
     @mouseenter="observeAutoplay = false"
     @mouseleave="observeAutoplay = true"
   >
@@ -32,6 +33,7 @@ export default defineComponent({
     navigation: { type: Boolean, default: true },
     infinite: { type: Boolean, default: true },
     autoplay: { type: Boolean, default: true },
+    swipeable: { type: Boolean, default: false },
     options: { type: Array, default () { /* { img_src:"" } */ return [] } },
   },
   setup (props, { emit }) {
