@@ -1,5 +1,6 @@
 <template>
   <base-uploader
+    ref="uploader"
     :accept="accept"
     :max-file-size="maxFileSize"
     :img-src="imgSrc"
