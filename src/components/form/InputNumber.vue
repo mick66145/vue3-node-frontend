@@ -52,18 +52,22 @@ export default defineComponent({
     modelValue: { type: [String, Number], default: 0 },
     rules: { type: Array, default () { return [] } },
     required: { type: Boolean, default: true },
+    min: { type: [String, Number] },
+    max: { type: [String, Number] },
   },
   emits: [
     'update:modelValue',
   ],
   setup (props, { emit }) {
     // data
-    const { label, rules, required } = toRefs(props)
+    const { label, rules, required, min, max } = toRefs(props)
 
     // computed
     const ruleList = computed(() => {
       const rule = []
       required.value && rule.push(vuelidate.required(`${label.value}必填`))
+      min.value && rule.push(vuelidate.minValue(min.value, `${label.value}必需大於${min.value}`))
+      max.value && rule.push(vuelidate.maxValue(max.value, `${label.value}必需小於${max.value}`))
       return rule.concat(rules.value)
     })
 
