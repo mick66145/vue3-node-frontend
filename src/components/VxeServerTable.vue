@@ -16,6 +16,7 @@
         :footer-span-method="footerSpanMethod"
         :footer-method="footerMethod"
         :checkbox-config="observeCheckboxConfig"
+        :tree-config="treeConfig"
         @sort-change="onChangeSort"
         @checkbox-all="onCheckboxAll"
         @checkbox-change="onCheckboxChange"
@@ -52,7 +53,8 @@ export default defineComponent({
     showFooter: { type: Boolean, default: false },
     footerSpanMethod: { type: Function },
     footerMethod: { type: Function },
-    checkboxConfig: { type: Object },
+    checkboxConfig: { type: Object }, // { labelField:'', checkMethod:({row}), visibleMethod:({row})}
+    treeConfig: { type: Object },
     rowConfig: { type: Object },
     maxHeight: { type: Number },
   },

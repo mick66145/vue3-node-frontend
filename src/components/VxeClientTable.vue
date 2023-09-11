@@ -16,6 +16,7 @@
         :footer-span-method="footerSpanMethod"
         :footer-method="footerMethod"
         :checkbox-config="checkboxConfig"
+        :tree-config="treeConfig"
         @checkbox-all="onCheckboxAll"
         @checkbox-change="onCheckboxChange"
       >
@@ -46,6 +47,7 @@ export default defineComponent({
     footerSpanMethod: { type: Function },
     footerMethod: { type: Function },
     checkboxConfig: { type: Object }, // { labelField:'', checkMethod:({row}), visibleMethod:({row})}
+    treeConfig: { type: Object },
     maxHeight: { type: String },
   },
   emits: ['checkbox-all', 'checkbox-change', 'update:current'],
