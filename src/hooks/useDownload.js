@@ -3,10 +3,15 @@ import useCRUD from '@/hooks/useCRUD'
 
 export default function useDownload ({
   id = null,
+  payload = null,
   readFetch,
 }) {
   const download = async () => {
-    const [res, error] = id ? await callReadFetch(id) : await callReadFetch()
+    let res, error
+    if (!id && !payload) { [res, error] = await callReadFetch() }
+    if (id && payload) { [res, error] = await callReadFetch(id, payload) }
+    if (id && !payload) { [res, error] = await callReadFetch(id) }
+    if (!id && payload) { [res, error] = await callReadFetch(payload) }
     if (res) {
       const { headers, data } = res
       const contentDisposition = headers['content-disposition']
