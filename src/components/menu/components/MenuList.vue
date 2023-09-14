@@ -7,7 +7,7 @@
       :title="option.title"
       :icon="option.icon"
     />
-    <q-item v-else>
+    <q-item v-else v-ripple clickable>
       <q-item-section>{{ option.title }}</q-item-section>
       <q-item-section side>
         <q-icon name="keyboard_arrow_right" />
