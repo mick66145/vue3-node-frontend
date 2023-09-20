@@ -1,8 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <app-header v-show="isScreenLargerMd" />
-    <mobile-header v-show="!isScreenLargerMd" />
-    <app-sidebar v-show="!isScreenLargerMd" />
+    <app-header v-if="isScreenLargerSm" />
+    <mobile-header v-if="!isScreenLargerSm" />
+    <app-sidebar v-if="!isScreenLargerSm" />
     <q-page-container class="bg-grey-1">
       <router-view />
     </q-page-container>
@@ -25,10 +25,10 @@ export default defineComponent({
   },
   setup () {
     // use
-    const { isScreenLargerMd } = useScreen()
+    const { isScreenLargerSm } = useScreen()
 
     return {
-      isScreenLargerMd,
+      isScreenLargerSm,
     }
   },
 })
