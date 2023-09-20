@@ -1,6 +1,6 @@
 <template>
   <q-header class="flex-center row text-blue-grey-7 fixed-top">
-    <q-toolbar class="bg-primary flex-center text-white max-w-480px row shadow-7">
+    <q-toolbar class="bg-primary flex-center text-white max-w-768px row shadow-7">
       <q-avatar class="left-3 absolute">
         <base-image
           width="30px"
