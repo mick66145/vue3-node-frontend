@@ -5,34 +5,25 @@
     show-if-above
     bordered
     :width="260"
-    class="bg-white shadow-7 text-blue-grey-7"
+    class="shadow-7 text-blue-grey-7"
   >
     <q-scroll-area class="h-full">
-      <q-list class="text-lg">
-        <q-item
-          v-for="({ label, icon , to, clickFn },index) in sidearOptions"
-          :key="index"
-          v-ripple
-          clickable
-          :to="to"
-          @click="clickFn"
-        >
-          <q-item-section v-if="icon" avatar>
-            <q-icon :name="icon" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{ label }}</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
+      <sidebar-list
+        :options="sidearOptions"
+      />
     </q-scroll-area>
   </q-drawer>
 </template>
 
 <script>
+import SidebarList from './sidebar/SidebarList.vue'
 import { defineComponent, computed } from 'vue-demi'
 import { useApp } from '@/stores/app'
+
 export default defineComponent({
+  components: {
+    SidebarList,
+  },
   emits: ['toggle'],
   setup (props, { emit }) {
     // data
@@ -60,4 +51,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+:deep(.q-expansion-item__content) {
+  @apply bg-gray-50;
+}
 </style>
