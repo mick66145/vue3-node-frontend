@@ -1,11 +1,11 @@
 <template>
   <q-dialog v-model="isShowDialog" full-height full-width>
-    <thumbnails-carousel :options="options" />
+    <thumbnails-carousel :options="options" :slide="slide" />
   </q-dialog>
 </template>
 
 <script>
-import { defineComponent } from 'vue-demi'
+import { defineComponent, ref } from 'vue-demi'
 import useDialog from '@/hooks/useDialog'
 
 export default defineComponent({
@@ -13,8 +13,12 @@ export default defineComponent({
     options: { type: Array, default () { /* { img_src:"" } */ return [] } },
   },
   setup () {
+    // data
+    const slide = ref(0)
+
     // methods
-    const showDialog = async () => {
+    const showDialog = async ({ slide: slideData = 0 }) => {
+      slide.value = slideData
       isShowDialog.value = !isShowDialog.value
     }
 
@@ -22,6 +26,7 @@ export default defineComponent({
     const { isShowDialog } = useDialog({})
 
     return {
+      slide,
       isShowDialog,
       showDialog,
     }
