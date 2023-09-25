@@ -23,6 +23,9 @@ const router = createRouter({
       component: () => import('@/views/error-page/404.vue'),
     },
   ],
+  scrollBehavior (to, from, savedPosition) {
+    return savedPosition || { left: 0, top: 0 }
+  },
 })
 
 export default router
