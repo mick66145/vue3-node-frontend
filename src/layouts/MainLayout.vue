@@ -1,8 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <app-header v-if="isScreenLargerSm" />
-    <mobile-header v-if="!isScreenLargerSm" />
-    <app-sidebar v-if="!isScreenLargerSm" />
+    <app-header class="md:block <md:hidden" />
+    <mobile-header class="md:hidden <md:block" />
+    <app-sidebar class="md:hidden <md:block" />
     <q-page-container class="bg-grey-1">
       <router-view />
     </q-page-container>
@@ -13,7 +13,6 @@
 <script>
 import { AppHeader, MobileHeader, AppSidebar, AppFooter } from './components'
 import { defineComponent } from 'vue-demi'
-import useScreen from '@/hooks/useScreen'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -24,12 +23,6 @@ export default defineComponent({
     AppFooter,
   },
   setup () {
-    // use
-    const { isScreenLargerSm } = useScreen()
-
-    return {
-      isScreenLargerSm,
-    }
   },
 })
 </script>
