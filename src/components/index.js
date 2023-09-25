@@ -52,6 +52,7 @@ import BaseCenterDialog from './dialog/BaseCenterDialog.vue'
 import ImagePreviewDialog from './dialog/ImagePreviewDialog.vue'
 import MessageDialog from './dialog/MessageDialog.vue'
 import MessageCenterDialog from './dialog/MessageCenterDialog.vue'
+import LightboxDialog from './dialog/LightboxDialog.vue'
 import SkeletonTable from './skeleton/SkeletonTable.vue'
 import SkeletonTextItem from './skeleton/SkeletonTextItem.vue'
 import SkeletonImageTextItem from './skeleton/SkeletonImageTextItem.vue'
@@ -68,6 +69,7 @@ import InfiniteScroll from './infinite-scroll/InfiniteScroll.vue'
 import InfiniteScrollReverse from './infinite-scroll/InfiniteScrollReverse.vue'
 import BaseCarousel from './carousel/BaseCarousel.vue'
 import SwipeableCarousel from './carousel/SwipeableCarousel.vue'
+import ThumbnailsCarousel from './carousel/ThumbnailsCarousel.vue'
 import ContainerPage from './page/ContainerPage.vue'
 import ContainerBlock from './block/ContainerBlock.vue'
 import BaseMenu from './menu/BaseMenu.vue'
@@ -133,6 +135,7 @@ export default {
     app.component('ImagePreviewDialog', ImagePreviewDialog)
     app.component('MessageDialog', MessageDialog)
     app.component('MessageCenterDialog', MessageCenterDialog)
+    app.component('LightboxDialog', LightboxDialog)
     app.component('SkeletonTable', SkeletonTable)
     app.component('SkeletonTextItem', SkeletonTextItem)
     app.component('SkeletonImageTextItem', SkeletonImageTextItem)
@@ -149,6 +152,7 @@ export default {
     app.component('InfiniteScrollReverse', InfiniteScrollReverse)
     app.component('BaseCarousel', BaseCarousel)
     app.component('SwipeableCarousel', SwipeableCarousel)
+    app.component('ThumbnailsCarousel', ThumbnailsCarousel)
     app.component('ContainerPage', ContainerPage)
     app.component('ContainerBlock', ContainerBlock)
     app.component('BaseMenu', BaseMenu)
