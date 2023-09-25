@@ -8,6 +8,7 @@
 
 <script>
 import { defineComponent, ref } from 'vue-demi'
+import useNotify from '@/hooks/useNotify'
 
 export default defineComponent({
   props: { },
@@ -18,7 +19,10 @@ export default defineComponent({
 
     // methods
     const validate = () => {
-      return form.value.validate()
+      return form.value.validate().then(async (success) => {
+        if (!success) { notifyError({ message: '欄位未填寫正確請檢查' }) }
+        return form.value.validate()
+      })
     }
     const resetValidation = () => {
       form.value.resetValidation()
@@ -38,6 +42,9 @@ export default defineComponent({
     const onReset = () => {
       emit('reset')
     }
+
+    // use
+    const { notifyError } = useNotify()
     return {
       form,
       validate,
