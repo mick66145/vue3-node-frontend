@@ -2,7 +2,7 @@
 <template>
   <q-list v-for="(option,index) in options" :key="option">
     <sidebar-link
-      v-if="option.children.length===0"
+      v-if="!option.children || option?.children.length===0"
       :to="option.to"
       :title="option.title"
       :icon="option.icon"
