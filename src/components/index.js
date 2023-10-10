@@ -32,6 +32,7 @@ import InputFileUpload from './form/InputFileUpload.vue'
 import InputCreditCard from './form/InputCreditCard.vue'
 import InputCreditCardExpiredDate from './form/InputCreditCardExpiredDate.vue'
 import InputTrueFalseSelect from './form/InputTrueFalseSelect.vue'
+import InputAlpha from './form/InputAlpha.vue'
 import BaseButton from './button/BaseButton.vue'
 import AddButton from './button/AddButton.vue'
 import DeleteButton from './button/DeleteButton.vue'
@@ -115,6 +116,7 @@ export default {
     app.component('InputCreditCard', InputCreditCard)
     app.component('InputCreditCardExpiredDate', InputCreditCardExpiredDate)
     app.component('InputTrueFalseSelect', InputTrueFalseSelect)
+    app.component('InputAlpha', InputAlpha)
     app.component('BaseButton', BaseButton)
     app.component('AddButton', AddButton)
     app.component('DeleteButton', DeleteButton)
