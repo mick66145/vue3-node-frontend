@@ -43,7 +43,7 @@ export default defineComponent({
     imgSrc: { type: String },
     maxFileSize: { type: Number },
     multiple: { type: Boolean },
-    disable: { type: Boolean, defalut: false },
+    disable: { type: Boolean, default: false },
   },
   emits: ['rejected', 'added'],
   setup (props, { emit }) {

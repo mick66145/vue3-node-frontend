@@ -24,7 +24,7 @@ export default defineComponent({
   props: {
     accept: { type: String },
     maxFileSize: { type: Number, default: 2048000 },
-    disable: { type: Boolean, defalut: false },
+    disable: { type: Boolean, default: false },
   },
   emits: ['onFile'],
   setup (props, { emit }) {
