@@ -19,6 +19,11 @@
       "view": "查看",
       "dowload": "下載",
       "line": "使用Line登入"
+    },
+    "prefix":{
+      "edit": "編輯",
+      "add": "新增",
+      "view": "查看"
     }
   }
 }

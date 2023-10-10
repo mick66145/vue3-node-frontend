@@ -19,6 +19,11 @@
       "view": "View",
       "dowload": "Dowload",
       "line": "LineLogIn"
+    },
+    "prefix":{
+      "edit": "Edit",
+      "add": "Add",
+      "view": "View"
     }
   }
 }
