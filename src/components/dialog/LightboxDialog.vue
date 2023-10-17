@@ -1,6 +1,6 @@
 <template>
-  <q-dialog v-model="isShowDialog" full-height full-width>
-    <thumbnails-carousel :options="options" :slide="slide" />
+  <q-dialog v-model="isShowDialog">
+    <swipeable-carousel :options="options" :slide="slide" :autoplay="false" />
   </q-dialog>
 </template>
 
