@@ -12,12 +12,23 @@
   >
     <slot name="default" />
     <template v-if="options.length>0">
-      <q-carousel-slide
-        v-for="(carouselItem,index) in options"
-        :key="index"
-        :name="index"
-        :img-src="preview(carouselItem)"
-      />
+      <template v-if="!useImage">
+        <q-carousel-slide
+          v-for="(carouselItem,index) in options"
+          :key="index"
+          :name="index"
+          :img-src="preview(carouselItem)"
+        />
+      </template>
+      <template v-else>
+        <img
+          v-for="(carouselItem,index) in options"
+          :key="index"
+          class="h-400px w-full max-h-400px"
+          :src="preview(carouselItem)"
+          :name="index"
+        >
+      </template>
     </template>
   </q-carousel>
 </template>
@@ -37,6 +48,7 @@ export default defineComponent({
     autoplay: { type: Boolean, default: true },
     swipeable: { type: Boolean, default: false },
     options: { type: Array, default () { return [] } },
+    useImage: { type: Boolean, default: true },
   },
   setup (props, { emit }) {
     // data
